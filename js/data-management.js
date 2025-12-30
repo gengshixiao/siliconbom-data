@@ -15,16 +15,16 @@ const mockTables = [
 // 模拟表明细数据（第一页10条）
 const mockTableData = {
   parts_catalog: [
-    { id: 1, partNumber: 'TI-74HC00D', manufacturer: 'Texas Instruments', category: 'MOSFET', voltage: '5V', current: '8mA', package: 'SOIC-14', stock: 1250, price: 0.25, inputMethod: 'manual' },
-    { id: 2, partNumber: 'ST-MOSFET-2N7000', manufacturer: 'STMicroelectronics', category: 'MOSFET', voltage: '60V', current: '200mA', package: 'TO-92', stock: 3200, price: 0.15, inputMethod: 'datasheet' },
-    { id: 3, partNumber: 'INF-IPB60N06S4', manufacturer: 'Infineon', category: 'MOSFET', voltage: '60V', current: '50A', package: 'TO-263', stock: 850, price: 1.25, inputMethod: 'import' },
-    { id: 4, partNumber: 'NXP-BSS138', manufacturer: 'NXP Semiconductors', category: 'MOSFET', voltage: '50V', current: '200mA', package: 'SOT-23', stock: 5600, price: 0.12, inputMethod: 'manual' },
-    { id: 5, partNumber: 'ON-FDMS86101', manufacturer: 'ON Semiconductor', category: 'MOSFET', voltage: '30V', current: '30A', package: 'Power33', stock: 420, price: 0.85, inputMethod: 'datasheet' },
-    { id: 6, partNumber: 'VISHAY-SI2302', manufacturer: 'Vishay', category: 'MOSFET', voltage: '20V', current: '4.2A', package: 'SOT-23', stock: 2100, price: 0.18, inputMethod: 'import' },
-    { id: 7, partNumber: 'FAIRCHILD-2N7002', manufacturer: 'Fairchild', category: 'MOSFET', voltage: '60V', current: '115mA', package: 'SOT-23', stock: 3800, price: 0.10, inputMethod: 'manual' },
-    { id: 8, partNumber: 'ROHM-2SK3019', manufacturer: 'ROHM', category: 'MOSFET', voltage: '60V', current: '5A', package: 'TO-220', stock: 650, price: 0.55, inputMethod: 'datasheet' },
-    { id: 9, partNumber: 'TOSHIBA-2SK2231', manufacturer: 'Toshiba', category: 'MOSFET', voltage: '200V', current: '6A', package: 'TO-220', stock: 320, price: 1.15, inputMethod: 'import' },
-    { id: 10, partNumber: 'DIODES-DMN2041L', manufacturer: 'Diodes Inc', category: 'MOSFET', voltage: '20V', current: '4.5A', package: 'SOT-23', stock: 1800, price: 0.22, inputMethod: 'manual' },
+    { id: 1, partNumber: 'TI-74HC00D', manufacturer: 'Texas Instruments', category: 'MOSFET', voltage: '5V', current: '8mA', package: 'SOIC-14', stock: 1250, price: 0.25, inputMethod: 'manual', datasheetUrl: 'https://www.ti.com/lit/ds/symlink/74hc00.pdf' },
+    { id: 2, partNumber: 'ST-MOSFET-2N7000', manufacturer: 'STMicroelectronics', category: 'MOSFET', voltage: '60V', current: '200mA', package: 'TO-92', stock: 3200, price: 0.15, inputMethod: 'datasheet', datasheetUrl: 'https://www.st.com/resource/en/datasheet/2n7000.pdf' },
+    { id: 3, partNumber: 'INF-IPB60N06S4', manufacturer: 'Infineon', category: 'MOSFET', voltage: '60V', current: '50A', package: 'TO-263', stock: 850, price: 1.25, inputMethod: 'import', datasheetUrl: '' },
+    { id: 4, partNumber: 'NXP-BSS138', manufacturer: 'NXP Semiconductors', category: 'MOSFET', voltage: '50V', current: '200mA', package: 'SOT-23', stock: 5600, price: 0.12, inputMethod: 'manual', datasheetUrl: 'https://www.nxp.com/docs/en/data-sheet/BSS138.pdf' },
+    { id: 5, partNumber: 'ON-FDMS86101', manufacturer: 'ON Semiconductor', category: 'MOSFET', voltage: '30V', current: '30A', package: 'Power33', stock: 420, price: 0.85, inputMethod: 'datasheet', datasheetUrl: '' },
+    { id: 6, partNumber: 'VISHAY-SI2302', manufacturer: 'Vishay', category: 'MOSFET', voltage: '20V', current: '4.2A', package: 'SOT-23', stock: 2100, price: 0.18, inputMethod: 'import', datasheetUrl: 'https://www.vishay.com/docs/70660/70660.pdf' },
+    { id: 7, partNumber: 'FAIRCHILD-2N7002', manufacturer: 'Fairchild', category: 'MOSFET', voltage: '60V', current: '115mA', package: 'SOT-23', stock: 3800, price: 0.10, inputMethod: 'manual', datasheetUrl: '' },
+    { id: 8, partNumber: 'ROHM-2SK3019', manufacturer: 'ROHM', category: 'MOSFET', voltage: '60V', current: '5A', package: 'TO-220', stock: 650, price: 0.55, inputMethod: 'datasheet', datasheetUrl: 'https://www.rohm.com/datasheet/2SK3019' },
+    { id: 9, partNumber: 'TOSHIBA-2SK2231', manufacturer: 'Toshiba', category: 'MOSFET', voltage: '200V', current: '6A', package: 'TO-220', stock: 320, price: 1.15, inputMethod: 'import', datasheetUrl: '' },
+    { id: 10, partNumber: 'DIODES-DMN2041L', manufacturer: 'Diodes Inc', category: 'MOSFET', voltage: '20V', current: '4.5A', package: 'SOT-23', stock: 1800, price: 0.22, inputMethod: 'manual', datasheetUrl: 'https://www.diodes.com/assets/Datasheets/DMN2041L.pdf' },
   ]
 };
 
@@ -271,7 +271,7 @@ function renderTableData() {
     tableHead.innerHTML = `
       <tr>
         ${columns.map(col => `<th>${getColumnName(col)}</th>`).join('')}
-        <th style="width: 120px;">操作</th>
+        <th style="width: 180px;">操作</th>
       </tr>
     `;
     
@@ -283,6 +283,7 @@ function renderTableData() {
           <div class="data-table-actions">
             <button class="action-btn edit" onclick="editRow(${row.id})">编辑</button>
             <button class="action-btn delete" onclick="deleteRow(${row.id})">删除</button>
+            <button class="action-btn manual" onclick="openDataManual(${row.id})">数据手册</button>
           </div>
         </td>
       </tr>
@@ -543,6 +544,11 @@ function getAddFormHTML(type) {
           <label class="form-label">价格</label>
           <input type="number" step="0.01" class="form-input" name="price" required>
         </div>
+        <div class="form-group">
+          <label class="form-label">数据手册地址</label>
+          <input type="url" class="form-input" name="datasheetUrl" placeholder="https://example.com/datasheet.pdf">
+          <div class="form-hint">请输入完整的URL地址，例如：https://www.ti.com/datasheet.pdf</div>
+        </div>
       </form>
     `;
   } else if (type === 'import') {
@@ -595,6 +601,7 @@ function handleAddSubmit(type) {
       package: formData.get('package'),
       stock: parseInt(formData.get('stock')),
       price: parseFloat(formData.get('price')),
+      datasheetUrl: formData.get('datasheetUrl') || '',
       inputMethod: 'manual'
     };
     
@@ -663,6 +670,11 @@ function getEditFormHTML(row) {
         <label class="form-label">价格</label>
         <input type="number" step="0.01" class="form-input" name="price" value="${row.price}" required>
       </div>
+      <div class="form-group">
+        <label class="form-label">数据手册地址</label>
+        <input type="url" class="form-input" name="datasheetUrl" value="${row.datasheetUrl || ''}" placeholder="https://example.com/datasheet.pdf">
+        <div class="form-hint">请输入完整的URL地址，例如：https://www.ti.com/datasheet.pdf</div>
+      </div>
     </form>
   `;
 }
@@ -684,7 +696,8 @@ function handleEditSubmit(id) {
       current: formData.get('current'),
       package: formData.get('package'),
       stock: parseInt(formData.get('stock')),
-      price: parseFloat(formData.get('price'))
+      price: parseFloat(formData.get('price')),
+      datasheetUrl: formData.get('datasheetUrl') || ''
     };
     
     closeModal();
@@ -692,6 +705,20 @@ function handleEditSubmit(id) {
     showMessage('编辑成功', 'success');
   }
 }
+
+// 打开数据手册抽屉（全局函数，供HTML调用）
+window.openDataManual = function(id) {
+  const allData = mockTableData[currentTable.name] || [];
+  const row = allData.find(r => r.id === id);
+  if (!row) return;
+  
+  const drawer = createPDFDrawer(`${row.partNumber} - 数据手册`, row);
+  
+  // 初始化PDF浏览器功能
+  setTimeout(() => {
+    initPDFViewer(row);
+  }, 50);
+};
 
 // 打开查询测试抽屉（全局函数，供HTML调用）
 window.openQueryTest = function() {
@@ -873,5 +900,234 @@ window.closeDrawer = function() {
       }
     }, 300);
   }
+};
+
+// 创建PDF抽屉
+function createPDFDrawer(title, row) {
+  // 创建遮罩层
+  const overlay = document.createElement('div');
+  overlay.className = 'drawer-overlay';
+  overlay.addEventListener('click', closeDrawer);
+  
+  const drawer = document.createElement('div');
+  drawer.className = 'drawer pdf-drawer';
+  drawer.innerHTML = `
+    <div class="drawer-header">
+      <div class="drawer-title">${title}</div>
+      <div class="drawer-header-actions">
+        <button class="drawer-action-btn" id="downloadPDFBtn" title="下载PDF">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+          </svg>
+        </button>
+        <button class="drawer-close" onclick="closeDrawer()">×</button>
+      </div>
+    </div>
+    <div class="drawer-body pdf-viewer-container">
+      <div class="pdf-viewer" id="pdfViewer">
+        <div class="pdf-loading">加载中...</div>
+      </div>
+    </div>
+  `;
+  
+  // 先添加遮罩，再添加抽屉
+  document.body.appendChild(overlay);
+  document.body.appendChild(drawer);
+  
+  setTimeout(() => {
+    overlay.classList.add('show');
+    drawer.classList.add('show');
+  }, 10);
+  
+  return drawer;
+}
+
+// 初始化PDF浏览器
+function initPDFViewer(row) {
+  const pdfViewer = document.getElementById('pdfViewer');
+  if (!pdfViewer) return;
+  
+  // 模拟加载
+  setTimeout(() => {
+    // 生成模拟的数据手册内容
+    const datasheetContent = generateMockDatasheet(row);
+    
+    pdfViewer.innerHTML = `
+      <div class="datasheet-content">
+        ${datasheetContent}
+      </div>
+    `;
+  }, 300);
+  
+  // 初始化下载按钮
+  const downloadBtn = document.getElementById('downloadPDFBtn');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', () => {
+      downloadPDF(row);
+    });
+  }
+}
+
+// 生成模拟数据手册内容
+function generateMockDatasheet(row) {
+  return `
+    <div class="datasheet-header">
+      <div class="datasheet-logo">${row.manufacturer}</div>
+      <div class="datasheet-title">${row.partNumber}</div>
+      <div class="datasheet-subtitle">${row.category} 数据手册</div>
+    </div>
+    
+    <div class="datasheet-section">
+      <h2 class="section-title">产品概述</h2>
+      <p class="section-content">
+        ${row.partNumber} 是一款由 ${row.manufacturer} 生产的高性能${row.category}器件。
+        该产品采用先进的制造工艺，具有优异的电气特性和可靠性。
+      </p>
+    </div>
+    
+    <div class="datasheet-section">
+      <h2 class="section-title">主要特性</h2>
+      <ul class="feature-list">
+        <li>工作电压范围：${row.voltage}</li>
+        <li>额定电流：${row.current}</li>
+        <li>封装形式：${row.package}</li>
+        <li>工作温度范围：-40°C 至 +125°C</li>
+        <li>符合 RoHS 环保标准</li>
+        <li>低功耗设计</li>
+        <li>高可靠性，适用于工业级应用</li>
+      </ul>
+    </div>
+    
+    <div class="datasheet-section">
+      <h2 class="section-title">电气参数</h2>
+      <table class="param-table">
+        <thead>
+          <tr>
+            <th>参数</th>
+            <th>符号</th>
+            <th>最小值</th>
+            <th>典型值</th>
+            <th>最大值</th>
+            <th>单位</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>工作电压</td>
+            <td>V<sub>DD</sub></td>
+            <td>-</td>
+            <td>${row.voltage}</td>
+            <td>-</td>
+            <td>V</td>
+          </tr>
+          <tr>
+            <td>额定电流</td>
+            <td>I<sub>D</sub></td>
+            <td>-</td>
+            <td>${row.current}</td>
+            <td>-</td>
+            <td>A</td>
+          </tr>
+          <tr>
+            <td>导通电阻</td>
+            <td>R<sub>DS(ON)</sub></td>
+            <td>-</td>
+            <td>0.05</td>
+            <td>0.08</td>
+            <td>Ω</td>
+          </tr>
+          <tr>
+            <td>栅极电压</td>
+            <td>V<sub>GS</sub></td>
+            <td>2.0</td>
+            <td>4.5</td>
+            <td>20</td>
+            <td>V</td>
+          </tr>
+          <tr>
+            <td>功耗</td>
+            <td>P<sub>D</sub></td>
+            <td>-</td>
+            <td>1.2</td>
+            <td>2.5</td>
+            <td>W</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="datasheet-section">
+      <h2 class="section-title">应用领域</h2>
+      <ul class="feature-list">
+        <li>电源管理系统</li>
+        <li>DC-DC 转换器</li>
+        <li>电池充电管理</li>
+        <li>马达驱动控制</li>
+        <li>负载开关</li>
+        <li>消费电子产品</li>
+      </ul>
+    </div>
+    
+    <div class="datasheet-section">
+      <h2 class="section-title">封装信息</h2>
+      <div class="package-info">
+        <div class="package-diagram">
+          <div class="package-box">
+            <div class="package-label">${row.package}</div>
+            <div class="package-desc">封装示意图</div>
+          </div>
+        </div>
+        <div class="package-details">
+          <p><strong>封装类型：</strong>${row.package}</p>
+          <p><strong>引脚数量：</strong>3</p>
+          <p><strong>安装方式：</strong>表面贴装</p>
+          <p><strong>封装尺寸：</strong>请参考机械尺寸图</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="datasheet-section">
+      <h2 class="section-title">订购信息</h2>
+      <table class="param-table">
+        <thead>
+          <tr>
+            <th>型号</th>
+            <th>封装</th>
+            <th>温度范围</th>
+            <th>库存</th>
+            <th>价格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>${row.partNumber}</td>
+            <td>${row.package}</td>
+            <td>-40°C ~ +125°C</td>
+            <td>${formatNumber(row.stock)}</td>
+            <td>¥${row.price}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="datasheet-footer">
+      <p>© ${new Date().getFullYear()} ${row.manufacturer}. 版权所有。</p>
+      <p class="footer-note">本文档为演示数据，仅供参考。实际参数请以官方发布的数据手册为准。</p>
+    </div>
+  `;
+}
+
+// 下载PDF（全局函数，供HTML调用）
+window.downloadPDF = function(row) {
+  // 模拟下载
+  showMessage(`正在下载 ${row.partNumber} 的数据手册...`, 'success');
+  
+  // 在实际应用中，这里应该触发真实的文件下载
+  // const link = document.createElement('a');
+  // link.href = pdfUrl;
+  // link.download = `${row.partNumber}_datasheet.pdf`;
+  // link.click();
 };
 

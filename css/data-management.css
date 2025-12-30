@@ -280,6 +280,10 @@
   color: var(--bad);
 }
 
+.action-btn.manual {
+  color: var(--a1);
+}
+
 /* 分页 */
 .pagination {
   display: flex;
@@ -508,6 +512,13 @@
   background: var(--panel);
 }
 
+.form-hint {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
 /* 抽屉遮罩层 */
 .drawer-overlay {
   position: fixed;
@@ -691,6 +702,277 @@
   flex: 1;
 }
 
+/* PDF抽屉样式 */
+.pdf-drawer {
+  width: 800px;
+  right: -800px;
+}
+
+.pdf-drawer.show {
+  right: 0;
+}
+
+.pdf-viewer-container {
+  padding: 0;
+  overflow-y: auto;
+}
+
+.pdf-viewer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel2);
+  position: relative;
+}
+
+.pdf-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.drawer-action-btn svg {
+  display: block;
+}
+
+/* 数据手册内容样式 */
+.datasheet-content {
+  padding: 24px;
+  background: var(--panel);
+  min-height: 100%;
+}
+
+[data-theme="light"] .datasheet-content {
+  background: #ffffff;
+}
+
+.datasheet-header {
+  text-align: center;
+  padding: 32px 24px;
+  border-bottom: 2px solid var(--stroke);
+  margin-bottom: 24px;
+}
+
+.datasheet-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--a1);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.datasheet-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+}
+
+.datasheet-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.datasheet-section {
+  margin-bottom: 32px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--stroke2);
+}
+
+.section-content {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-list li {
+  font-size: 13px;
+  line-height: 2;
+  color: var(--text);
+  padding-left: 20px;
+  position: relative;
+}
+
+.feature-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--a1);
+  font-weight: 700;
+}
+
+.param-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.param-table th,
+.param-table td {
+  padding: 10px 12px;
+  border: 1px solid var(--stroke2);
+  text-align: left;
+}
+
+.param-table th {
+  background: var(--panel2);
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+[data-theme="light"] .param-table th {
+  background: rgba(0,0,0,.03);
+}
+
+.param-table td {
+  color: var(--text);
+}
+
+.param-table tbody tr:hover {
+  background: var(--panel2);
+}
+
+[data-theme="light"] .param-table tbody tr:hover {
+  background: rgba(0,0,0,.02);
+}
+
+.package-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.package-diagram {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.package-box {
+  width: 180px;
+  height: 180px;
+  border: 2px solid var(--stroke);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel2);
+}
+
+[data-theme="light"] .package-box {
+  background: rgba(0,0,0,.02);
+}
+
+.package-label {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--a1);
+  margin-bottom: 8px;
+}
+
+.package-desc {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.package-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.package-details p {
+  font-size: 13px;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.package-details strong {
+  color: var(--muted);
+  font-weight: 600;
+  margin-right: 8px;
+}
+
+.datasheet-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 2px solid var(--stroke);
+  text-align: center;
+}
+
+.datasheet-footer p {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 4px 0;
+}
+
+.footer-note {
+  font-style: italic;
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.datasheet-link-section {
+  margin-bottom: 20px;
+}
+
+.datasheet-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--a1);
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.datasheet-link:hover {
+  background: var(--a2);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(90, 138, 150, 0.3);
+}
+
+.datasheet-link svg {
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .datasheet-link:hover {
+  box-shadow: 0 4px 12px rgba(90, 138, 150, 0.4);
+}
+
 /* 响应式 */
 @media (max-width: 768px) {
   .table-catalog {
@@ -705,6 +987,41 @@
   .drawer {
     width: 100%;
     right: -100%;
+  }
+  
+  .pdf-drawer {
+    width: 100%;
+    right: -100%;
+  }
+  
+  .datasheet-content {
+    padding: 16px;
+  }
+  
+  .datasheet-header {
+    padding: 24px 16px;
+  }
+  
+  .datasheet-title {
+    font-size: 22px;
+  }
+  
+  .package-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .package-box {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .param-table {
+    font-size: 11px;
+  }
+  
+  .param-table th,
+  .param-table td {
+    padding: 8px 6px;
   }
 }
 
