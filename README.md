@@ -1,6 +1,10 @@
-# 硅宝数据平台
+# 硅宝数据平台 (SiliconBOM Data Platform)
 
 硅宝智能体产品的结构化数据库后台管理系统，用于管理观测硅宝依赖的后台数据。
+
+## 在线演示
+
+[GitHub Pages](https://your-username.github.io/siliconbom-data/) (待配置)
 
 ## 项目结构
 
