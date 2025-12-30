@@ -1,0 +1,225 @@
+/* 日志管理样式 */
+
+.log-management-wrap {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.log-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 12px;
+}
+
+.log-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.log-filters {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-label {
+  font-size: 12px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.filter-input,
+.filter-select {
+  min-width: 150px;
+}
+
+/* 日志表格 */
+.log-table-container {
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r2);
+  overflow: hidden;
+}
+
+.log-table-wrapper {
+  overflow-x: auto;
+}
+
+.log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.log-table th,
+.log-table td {
+  padding: 12px;
+  border-top: 1px solid var(--stroke2);
+  text-align: left;
+}
+
+.log-table th {
+  background: var(--panel2);
+  color: var(--muted);
+  font-weight: 700;
+  border-top: 1px solid var(--stroke);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.log-table tbody tr {
+  transition: background 0.2s;
+}
+
+.log-table tbody tr:hover {
+  background: var(--panel2);
+}
+
+[data-theme="light"] .log-table tbody tr:hover {
+  background: rgba(0,0,0,.02);
+}
+
+.log-table td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.log-table td.sql {
+  max-width: 300px;
+  white-space: normal;
+  word-break: break-all;
+}
+
+.log-table td.result {
+  max-width: 150px;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.status-badge.success {
+  background: var(--panel2);
+  color: var(--a1);
+}
+
+[data-theme="light"] .status-badge.success {
+  background: rgba(90,138,150,.15);
+}
+
+.status-badge.empty {
+  background: var(--panel2);
+  color: var(--warn);
+}
+
+[data-theme="light"] .status-badge.empty {
+  background: rgba(160,133,75,.15);
+}
+
+.status-badge.failed {
+  background: var(--panel2);
+  color: var(--bad);
+}
+
+[data-theme="light"] .status-badge.failed {
+  background: rgba(166,91,91,.15);
+}
+
+.source-badge {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  background: var(--panel2);
+  color: var(--muted);
+}
+
+[data-theme="light"] .source-badge {
+  background: rgba(0,0,0,.05);
+}
+
+.source-badge.query-test {
+  background: var(--panel2);
+  color: var(--a1);
+}
+
+[data-theme="light"] .source-badge.query-test {
+  background: rgba(90,138,150,.15);
+}
+
+.source-badge.siliconbom {
+  background: var(--panel2);
+  color: var(--a2);
+}
+
+[data-theme="light"] .source-badge.siliconbom {
+  background: rgba(111,103,136,.15);
+}
+
+/* 分页 */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding: 12px;
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r2);
+}
+
+.pagination-info {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.pagination-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+  min-width: 36px;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .log-filters {
+    flex-direction: column;
+  }
+  
+  .filter-group {
+    width: 100%;
+  }
+  
+  .filter-input,
+  .filter-select {
+    flex: 1;
+  }
+}
+

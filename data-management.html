@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>数据管理 - 硅宝数据平台</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/data-management.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="https://chat-web-1253214834.cos.ap-beijing.myqcloud.com/image/f4f1acead1b2b1cfc74946089e643749.png" alt="Logo" class="sidebar-logo">
+        <div class="sidebar-title">硅宝数据平台</div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item">
+          <span>工作台</span>
+        </a>
+        <a href="data-management.html" class="nav-item active">
+          <span>数据管理</span>
+        </a>
+        <a href="log-management.html" class="nav-item">
+          <span>日志管理</span>
+        </a>
+      </nav>
+    </aside>
+    <button id="sidebarToggle" class="sidebar-toggle" title="展开/收起菜单"></button>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+      <!-- 顶部导航栏 -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="topbar-title">数据管理</h1>
+        </div>
+        <div class="topbar-right">
+          <button id="themeToggle" class="btn theme-toggle" title="切换主题"></button>
+          <span class="user-info">
+            <span id="userInfo">admin</span>
+          </span>
+          <button id="logoutBtn" class="btn logout-btn">退出登录</button>
+        </div>
+      </header>
+
+      <!-- 内容区域 -->
+      <main class="content-area">
+        <div id="dataManagementContent"></div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/data-management.js"></script>
+</body>
+</html>
+

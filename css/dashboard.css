@@ -1,0 +1,388 @@
+/* 工作台样式 */
+
+.dashboard-wrap {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.dashboard-controls {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.dashboard-title-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dashboard-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.dashboard-controls-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.control-item {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  border: 1px solid var(--stroke);
+  background: var(--panel2);
+  border-radius: 6px;
+  padding: 8px 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.control-item select {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-size: 12px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.control-item .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--stroke);
+  display: inline-block;
+}
+
+/* KPI 卡片网格 */
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: 10px;
+}
+
+.kpi-card {
+  border: 1px solid var(--stroke);
+  background: var(--panel);
+  border-radius: var(--r2);
+  padding: 12px;
+}
+
+[data-theme="light"] .kpi-card {
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+
+.kpi-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.kpi-value {
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  font-variant-numeric: tabular-nums;
+}
+
+.kpi-foot {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--muted2);
+  font-size: 12px;
+}
+
+.pill {
+  border: 1px solid var(--stroke2);
+  background: var(--panel2);
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 11px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.delta {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  border: 1px solid var(--stroke2);
+  background: var(--panel2);
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.delta.up {
+  color: var(--a3);
+}
+
+.delta.down {
+  color: var(--bad);
+}
+
+/* 行布局 */
+.dashboard-row {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--gap);
+  margin-top: var(--gap);
+}
+
+.span-8 {
+  grid-column: span 8;
+}
+
+.span-4 {
+  grid-column: span 4;
+}
+
+.span-6 {
+  grid-column: span 6;
+}
+
+.span-12 {
+  grid-column: span 12;
+}
+
+/* 面板头部 */
+.panel-header {
+  padding: 12px 12px 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.panel-title {
+  font-size: 13px;
+  font-weight: 900;
+  margin: 0;
+}
+
+.panel-subtitle {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 8px 0 0;
+}
+
+.panel-body {
+  padding: 12px;
+}
+
+.panel-box {
+  border: 1px solid var(--stroke2);
+  background: var(--panel2);
+  border-radius: var(--r);
+  padding: 12px;
+}
+
+.legend {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+  color: var(--muted);
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border: 1px solid var(--stroke2);
+  border-radius: 999px;
+  background: var(--panel2);
+  white-space: nowrap;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.legend-dot.c1 {
+  background: var(--a1);
+}
+
+.legend-dot.c2 {
+  background: var(--a2);
+}
+
+.legend-dot.c3 {
+  background: var(--a3);
+}
+
+.legend-dot.cBad {
+  background: var(--bad);
+}
+
+.legend-dot.cWarn {
+  background: var(--warn);
+}
+
+/* 表格样式 */
+.rank-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: var(--text);
+  table-layout: fixed;
+}
+
+.rank-table th,
+.rank-table td {
+  padding: 10px 10px;
+  border-top: 1px solid var(--stroke2);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rank-table th {
+  color: var(--muted);
+  font-weight: 700;
+  background: var(--panel2);
+  border-top: 1px solid var(--stroke);
+}
+
+.bar {
+  height: 8px;
+  border-radius: 999px;
+  background: var(--panel2);
+  overflow: hidden;
+  border: 1px solid var(--stroke2);
+}
+
+[data-theme="light"] .bar {
+  background: var(--stroke2);
+}
+
+.bar > i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: var(--a1);
+  opacity: 0.65;
+}
+
+.bar.b2 > i {
+  background: var(--a2);
+  opacity: 0.65;
+}
+
+.bar.b3 > i {
+  background: var(--a3);
+  opacity: 0.65;
+}
+
+[data-theme="light"] .bar > i {
+  opacity: 0.8;
+}
+
+[data-theme="light"] .bar.b2 > i {
+  opacity: 0.8;
+}
+
+[data-theme="light"] .bar.b3 > i {
+  opacity: 0.8;
+}
+
+/* 修复内联样式中的颜色 */
+.bar i[style*="rgba(122,167,179"] {
+  background: var(--a1) !important;
+  opacity: 0.65;
+}
+
+[data-theme="light"] .bar i[style*="rgba(122,167,179"] {
+  opacity: 0.8;
+}
+
+.bar i[style*="rgba(192,165,107"] {
+  background: var(--warn) !important;
+  opacity: 0.65;
+}
+
+[data-theme="light"] .bar i[style*="rgba(192,165,107"] {
+  opacity: 0.8;
+}
+
+.bar i[style*="rgba(198,123,123"] {
+  background: var(--bad) !important;
+  opacity: 0.65;
+}
+
+[data-theme="light"] .bar i[style*="rgba(198,123,123"] {
+  opacity: 0.8;
+}
+
+/* SVG图表颜色适配 */
+[data-theme="light"] svg defs stop[stop-color*="122,167,179"] {
+  stop-color: rgba(90,138,150,.25);
+}
+
+[data-theme="light"] svg defs stop[stop-color*="192,165,107"] {
+  stop-color: rgba(160,133,75,.2);
+}
+
+[data-theme="light"] svg defs stop[stop-color*="198,123,123"] {
+  stop-color: rgba(166,91,91,.18);
+}
+
+[data-theme="light"] svg path[stroke*="198,123,123"] {
+  stroke: rgba(166,91,91,.75) !important;
+}
+
+[data-theme="light"] svg path[stroke*="192,165,107"] {
+  stroke: rgba(160,133,75,.78) !important;
+}
+
+[data-theme="light"] svg path[stroke*="233,233,234"] {
+  stroke: rgba(29,29,31,.55) !important;
+}
+
+/* 响应式 */
+@media (max-width: 1200px) {
+  .kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  
+  .span-8,
+  .span-4,
+  .span-6,
+  .span-12 {
+    grid-column: span 12;
+  }
+}
+
+@media (max-width: 560px) {
+  .kpis {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-controls {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
