@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工作台 - 硅宝数据平台</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="https://chat-web-1253214834.cos.ap-beijing.myqcloud.com/image/f4f1acead1b2b1cfc74946089e643749.png" alt="Logo" class="sidebar-logo">
+        <div class="sidebar-title">硅宝数据平台</div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item active">
+          <span>工作台</span>
+        </a>
+        <a href="data-management.html" class="nav-item">
+          <span>数据管理</span>
+        </a>
+        <a href="log-management.html" class="nav-item">
+          <span>日志管理</span>
+        </a>
+      </nav>
+    </aside>
+    <button id="sidebarToggle" class="sidebar-toggle" title="展开/收起菜单"></button>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+      <!-- 顶部导航栏 -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="topbar-title">工作台</h1>
+        </div>
+        <div class="topbar-right">
+          <button id="themeToggle" class="btn theme-toggle" title="切换主题"></button>
+          <span class="user-info">
+            <span id="userInfo">admin</span>
+          </span>
+          <button id="logoutBtn" class="btn logout-btn">退出登录</button>
+        </div>
+      </header>
+
+      <!-- 内容区域 -->
+      <main class="content-area">
+        <div class="dashboard-wrap">
+          <div class="dashboard-controls">
+            <div class="dashboard-title-section">
+              <h1 class="dashboard-title">数据平台看板</h1>
+              <div class="dashboard-controls-group">
+                <span class="control-item">
+                  <span class="dot"></span>时间范围
+                  <select id="timeRange">
+                    <option>近 24 小时</option>
+                    <option>近 7 天</option>
+                    <option selected>近 30 天</option>
+                  </select>
+                </span>
+                <span class="control-item">
+                  <span class="dot"></span>分组
+                  <select id="groupBy">
+                    <option selected>按天</option>
+                    <option>按小时</option>
+                  </select>
+                </span>
+                <span class="control-item">
+                  <span class="dot"></span><span id="updateTime">更新时间：2025-01-15 18:30</span>
+                </span>
+              </div>
+            </div>
+            <button class="btn">导出</button>
+          </div>
+
+          <!-- KPI 指标条 -->
+          <section class="kpis">
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>数据总行数</span>
+                <span class="pill">当前</span>
+              </div>
+              <div class="kpi-value mono">318,420,918</div>
+              <div class="kpi-foot">
+                <span class="delta up">● 口径：全表求和</span>
+                <span>Rows</span>
+              </div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>数据表总数</span>
+                <span class="pill">可查询</span>
+              </div>
+              <div class="kpi-value mono">128</div>
+              <div class="kpi-foot">
+                <span class="delta up">● 统计：information_schema</span>
+                <span>Tables</span>
+              </div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>数据总 Size</span>
+                <span class="pill">存储占用</span>
+              </div>
+              <div class="kpi-value mono">1.84 TB</div>
+              <div class="kpi-foot">
+                <span class="delta up">● Data + Index</span>
+                <span>TB</span>
+              </div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>查询总次数</span>
+                <span class="pill">近 30 天</span>
+              </div>
+              <div class="kpi-value mono">92,610</div>
+              <div class="kpi-foot">
+                <span class="delta up">↑ 8.2%</span>
+                <span>vs 上期</span>
+              </div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>成功（非空）</span>
+                <span class="pill">近 30 天</span>
+              </div>
+              <div class="kpi-value mono">61,324</div>
+              <div class="kpi-foot">
+                <span class="delta up">● 66.2%</span>
+                <span>占比</span>
+              </div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>空值 / 失败</span>
+                <span class="pill">近 30 天</span>
+              </div>
+              <div class="kpi-value mono">21,106 / 10,180</div>
+              <div class="kpi-foot">
+                <span class="delta down">● 空值 22.8% · 失败 11.0%</span>
+                <span>分布</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- 数据量级排名 -->
+          <section class="dashboard-row">
+            <div class="card span-8">
+              <div class="panel-header">
+                <div>
+                  <p class="panel-title">数据量级排名</p>
+                  <p class="panel-subtitle">Top5 数据表（行数）与 Top5 品牌（行数/Size）</p>
+                  <div class="legend">
+                    <span class="legend-item">
+                      <span class="legend-dot c1"></span>表行数
+                    </span>
+                    <span class="legend-item">
+                      <span class="legend-dot c2"></span>品牌行数
+                    </span>
+                    <span class="legend-item">
+                      <span class="legend-dot c3"></span>品牌 Size
+                    </span>
+                  </div>
+                </div>
+                <span class="pill">Rankings</span>
+              </div>
+              <div class="panel-body">
+                <div class="panel-box">
+                  <div style="display:grid;grid-template-columns: 1fr 1fr;gap:14px;">
+                    <!-- Top tables by rows -->
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px 12px 0;color:var(--muted);font-size:12px;">数据表 Top5（按行数）</div>
+                      <table class="rank-table">
+                        <thead>
+                          <tr>
+                            <th style="width:42%;">表名</th>
+                            <th style="width:26%;">行数</th>
+                            <th style="width:32%;">占比</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="mono">parts_catalog</td>
+                            <td class="mono">98,420,110</td>
+                            <td><div class="bar"><i style="width:100%"></i></div></td>
+                          </tr>
+                          <tr>
+                            <td class="mono">bom_items</td>
+                            <td class="mono">64,118,902</td>
+                            <td><div class="bar"><i style="width:65%"></i></div></td>
+                          </tr>
+                          <tr>
+                            <td class="mono">inventory_quotes</td>
+                            <td class="mono">41,006,700</td>
+                            <td><div class="bar"><i style="width:42%"></i></div></td>
+                          </tr>
+                          <tr>
+                            <td class="mono">param_index</td>
+                            <td class="mono">29,880,114</td>
+                            <td><div class="bar"><i style="width:30%"></i></div></td>
+                          </tr>
+                          <tr>
+                            <td class="mono">datasheet_meta</td>
+                            <td class="mono">18,204,982</td>
+                            <td><div class="bar"><i style="width:19%"></i></div></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <!-- Brands by rows and size -->
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px 12px 0;color:var(--muted);font-size:12px;">品牌 Top5（按行数 / Size）</div>
+                      <table class="rank-table">
+                        <thead>
+                          <tr>
+                            <th style="width:42%;">品牌（厂商）</th>
+                            <th style="width:28%;">行数</th>
+                            <th style="width:30%;">Size</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Texas Instruments</td>
+                            <td class="mono">36,204,118</td>
+                            <td class="mono">210 GB</td>
+                          </tr>
+                          <tr>
+                            <td>Murata</td>
+                            <td class="mono">28,110,940</td>
+                            <td class="mono">176 GB</td>
+                          </tr>
+                          <tr>
+                            <td>STMicroelectronics</td>
+                            <td class="mono">22,640,221</td>
+                            <td class="mono">158 GB</td>
+                          </tr>
+                          <tr>
+                            <td>Infineon</td>
+                            <td class="mono">19,884,560</td>
+                            <td class="mono">141 GB</td>
+                          </tr>
+                          <tr>
+                            <td>NXP Semiconductors</td>
+                            <td class="mono">16,902,330</td>
+                            <td class="mono">123 GB</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <div style="padding:10px 12px 12px;">
+                        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+                          <div>
+                            <div style="color:var(--muted);font-size:12px;margin-bottom:8px;">品牌行数 Top5（可视化）</div>
+                            <div class="bar b2" style="margin-bottom:8px;"><i style="width:100%"></i></div>
+                            <div class="bar b2" style="margin-bottom:8px;"><i style="width:78%"></i></div>
+                            <div class="bar b2" style="margin-bottom:8px;"><i style="width:63%"></i></div>
+                            <div class="bar b2" style="margin-bottom:8px;"><i style="width:55%"></i></div>
+                            <div class="bar b2"><i style="width:47%"></i></div>
+                          </div>
+                          <div>
+                            <div style="color:var(--muted);font-size:12px;margin-bottom:8px;">品牌 Size Top5（可视化）</div>
+                            <div class="bar b3" style="margin-bottom:8px;"><i style="width:100%"></i></div>
+                            <div class="bar b3" style="margin-bottom:8px;"><i style="width:84%"></i></div>
+                            <div class="bar b3" style="margin-bottom:8px;"><i style="width:75%"></i></div>
+                            <div class="bar b3" style="margin-bottom:8px;"><i style="width:67%"></i></div>
+                            <div class="bar b3"><i style="width:58%"></i></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 数据概况快照 -->
+            <div class="card span-4">
+              <div class="panel-header">
+                <div>
+                  <p class="panel-title">数据概况快照</p>
+                  <p class="panel-subtitle">用于快速判断数据集中度与头部占用</p>
+                  <div class="legend">
+                    <span class="legend-item">
+                      <span class="legend-dot c1"></span>Top 表占比
+                    </span>
+                    <span class="legend-item">
+                      <span class="legend-dot c3"></span>Top 品牌占比
+                    </span>
+                  </div>
+                </div>
+                <span class="pill">Summary</span>
+              </div>
+              <div class="panel-body">
+                <div class="panel-box">
+                  <div style="display:grid;gap:12px;">
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px;">
+                        <div style="color:var(--muted);font-size:12px;">Top5 表行数占比</div>
+                        <div style="font-size:18px;font-weight:900;margin-top:8px;" class="mono">79.4%</div>
+                        <div style="color:var(--muted2);font-size:12px;margin-top:6px;">头部表强集中，建议做冷热分层</div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px;">
+                        <div style="color:var(--muted);font-size:12px;">Top5 品牌行数占比</div>
+                        <div style="font-size:18px;font-weight:900;margin-top:8px;" class="mono">38.2%</div>
+                        <div style="color:var(--muted2);font-size:12px;margin-top:6px;">品牌分散度适中，覆盖面较广</div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px;">
+                        <div style="color:var(--muted);font-size:12px;">平台只读策略拦截（近 30 天）</div>
+                        <div style="font-size:18px;font-weight:900;margin-top:8px;" class="mono">1,284</div>
+                        <div style="color:var(--muted2);font-size:12px;margin-top:6px;">UPDATE / DELETE / DROP 等被拒绝</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 查询次数趋势 -->
+          <section class="dashboard-row">
+            <div class="card span-8">
+              <div class="panel-header">
+                <div>
+                  <p class="panel-title">查询次数趋势</p>
+                  <p class="panel-subtitle">总查询（折线）· 结果类型（堆叠面积：成功/空值/失败）</p>
+                  <div class="legend">
+                    <span class="legend-item">
+                      <span class="legend-dot c1"></span>成功（非空）
+                    </span>
+                    <span class="legend-item">
+                      <span class="legend-dot cWarn"></span>空值
+                    </span>
+                    <span class="legend-item">
+                      <span class="legend-dot cBad"></span>失败
+                    </span>
+                  </div>
+                </div>
+                <span class="pill">Trend</span>
+              </div>
+              <div class="panel-body">
+                <div class="panel-box">
+                  <svg viewBox="0 0 980 320" width="100%" height="280" role="img" aria-label="查询趋势图">
+                    <!-- grid -->
+                    <g stroke="rgba(255,255,255,.06)" stroke-width="1">
+                      <line x1="52" y1="40" x2="950" y2="40"/>
+                      <line x1="52" y1="100" x2="950" y2="100"/>
+                      <line x1="52" y1="160" x2="950" y2="160"/>
+                      <line x1="52" y1="220" x2="950" y2="220"/>
+                      <line x1="52" y1="280" x2="950" y2="280"/>
+                    </g>
+                    <g stroke="rgba(255,255,255,.12)" stroke-width="1.2">
+                      <line x1="52" y1="20" x2="52" y2="280"/>
+                      <line x1="52" y1="280" x2="950" y2="280"/>
+                    </g>
+
+                    <!-- stacked areas -->
+                    <defs>
+                      <linearGradient id="gOk" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(122,167,179,.18)"/>
+                        <stop offset="100%" stop-color="rgba(122,167,179,0)"/>
+                      </linearGradient>
+                      <linearGradient id="gZero" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(192,165,107,.14)"/>
+                        <stop offset="100%" stop-color="rgba(192,165,107,0)"/>
+                      </linearGradient>
+                      <linearGradient id="gFail" x1="0" x2="0" y1="0" y2="1">
+                        <stop offset="0%" stop-color="rgba(198,123,123,.12)"/>
+                        <stop offset="100%" stop-color="rgba(198,123,123,0)"/>
+                      </linearGradient>
+                    </defs>
+
+                    <!-- Fail area -->
+                    <path d="M52,280 L92,262 L132,266 L172,258 L212,260 L252,254 L292,252 L332,248 L372,250 L412,246 L452,244 L492,242 L532,240 L572,238 L612,236 L652,234 L692,232 L732,230 L772,228 L812,226 L852,224 L892,223 L950,220 L950,280 Z" fill="url(#gFail)"/>
+
+                    <!-- Zero area -->
+                    <path d="M52,280 L92,240 L132,244 L172,236 L212,238 L252,232 L292,230 L332,224 L372,226 L412,220 L452,216 L492,214 L532,210 L572,206 L612,204 L652,200 L692,196 L732,194 L772,190 L812,188 L852,186 L892,185 L950,182 L950,220 L892,223 L852,224 L812,226 L772,228 L732,230 L692,232 L652,234 L612,236 L572,238 L532,240 L492,242 L452,244 L412,246 L372,250 L332,248 L292,252 L252,254 L212,260 L172,258 L132,266 L92,262 L52,280 Z" fill="url(#gZero)"/>
+
+                    <!-- OK area -->
+                    <path d="M52,280 L92,200 L132,206 L172,198 L212,194 L252,190 L292,186 L332,180 L372,178 L412,172 L452,168 L492,164 L532,160 L572,154 L612,150 L652,146 L692,140 L732,136 L772,132 L812,128 L852,124 L892,120 L950,116 L950,182 L892,185 L852,186 L812,188 L772,190 L732,194 L692,196 L652,200 L612,204 L572,206 L532,210 L492,214 L452,216 L412,220 L372,226 L332,224 L292,230 L252,232 L212,238 L172,236 L132,244 L92,240 L52,280 Z" fill="url(#gOk)"/>
+
+                    <!-- total line -->
+                    <path d="M92,200 L132,206 L172,198 L212,194 L252,190 L292,186 L332,180 L372,178 L412,172 L452,168 L492,164 L532,160 L572,154 L612,150 L652,146 L692,140 L732,136 L772,132 L812,128 L852,124 L892,120 L950,116" fill="none" stroke="rgba(233,233,234,.55)" stroke-width="2.2" stroke-linecap="round"/>
+
+                    <!-- type boundaries -->
+                    <path d="M92,262 L132,266 L172,258 L212,260 L252,254 L292,252 L332,248 L372,250 L412,246 L452,244 L492,242 L532,240 L572,238 L612,236 L652,234 L692,232 L732,230 L772,228 L812,226 L852,224 L892,223 L950,220" fill="none" stroke="rgba(198,123,123,.75)" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M92,240 L132,244 L172,236 L212,238 L252,232 L292,230 L332,224 L372,226 L412,220 L452,216 L492,214 L532,210 L572,206 L612,204 L652,200 L692,196 L732,194 L772,190 L812,188 L852,186 L892,185 L950,182" fill="none" stroke="rgba(192,165,107,.78)" stroke-width="2" stroke-linecap="round"/>
+
+                    <g fill="rgba(233,233,234,.35)" font-size="11">
+                      <text x="52" y="308">Day 1</text>
+                      <text x="900" y="308">Day 30</text>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="card span-4">
+              <div class="panel-header">
+                <div>
+                  <p class="panel-title">表查询次数 Top5</p>
+                  <p class="panel-subtitle">按 SQL 解析提取表名聚合</p>
+                  <div class="legend">
+                    <span class="legend-item">
+                      <span class="legend-dot c1"></span>查询次数
+                    </span>
+                  </div>
+                </div>
+                <span class="pill">Top 5</span>
+              </div>
+              <div class="panel-body">
+                <div class="panel-box">
+                  <table class="rank-table">
+                    <thead>
+                      <tr>
+                        <th style="width:58%;">表名</th>
+                        <th style="width:22%;">次数</th>
+                        <th style="width:20%;">占比</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="mono">parts_catalog</td>
+                        <td class="mono">21,804</td>
+                        <td class="mono">23.5%</td>
+                      </tr>
+                      <tr>
+                        <td class="mono">datasheet_meta</td>
+                        <td class="mono">14,112</td>
+                        <td class="mono">15.2%</td>
+                      </tr>
+                      <tr>
+                        <td class="mono">param_index</td>
+                        <td class="mono">12,480</td>
+                        <td class="mono">13.5%</td>
+                      </tr>
+                      <tr>
+                        <td class="mono">inventory_quotes</td>
+                        <td class="mono">9,734</td>
+                        <td class="mono">10.5%</td>
+                      </tr>
+                      <tr>
+                        <td class="mono">bom_items</td>
+                        <td class="mono">8,920</td>
+                        <td class="mono">9.6%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div style="margin-top:12px;display:grid;gap:10px;">
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px;">
+                        <div style="color:var(--muted);font-size:12px;">结果类型占比（近 30 天）</div>
+                        <div style="margin-top:10px;">
+                          <div style="display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12px;">
+                            <span style="width:70px;">成功</span>
+                            <div class="bar" style="flex:1;"><i style="width:66.2%;background:rgba(122,167,179,.65)"></i></div>
+                            <span class="mono" style="width:64px;text-align:right;">66.2%</span>
+                          </div>
+                          <div style="display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12px;margin-top:8px;">
+                            <span style="width:70px;">空值</span>
+                            <div class="bar" style="flex:1;"><i style="width:22.8%;background:rgba(192,165,107,.65)"></i></div>
+                            <span class="mono" style="width:64px;text-align:right;">22.8%</span>
+                          </div>
+                          <div style="display:flex;gap:8px;align-items:center;color:var(--muted);font-size:12px;margin-top:8px;">
+                            <span style="width:70px;">失败</span>
+                            <div class="bar" style="flex:1;"><i style="width:11%;background:rgba(198,123,123,.65)"></i></div>
+                            <span class="mono" style="width:64px;text-align:right;">11.0%</span>
+                          </div>
+                        </div>
+                        <div style="margin-top:10px;color:var(--muted2);font-size:12px;">
+                          失败包含：语法错误 / 数值错误 / 高危写操作（被拒绝）
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px;">
+                        <div style="color:var(--muted);font-size:12px;">高危写操作拦截（近 30 天）</div>
+                        <div style="font-size:18px;font-weight:900;margin-top:8px;" class="mono">1,284</div>
+                        <div style="color:var(--muted2);font-size:12px;margin-top:6px;">
+                          INSERT / UPDATE / DELETE / DROP / ALTER 等
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
+
