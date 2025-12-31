@@ -1,5 +1,17 @@
 // 日志管理逻辑
 
+// 表名和业务含义映射
+const tableAliasMap = {
+  'parts_catalog': 'MOSFET',
+  'bom_items': '三极管',
+  'inventory_quotes': '电阻',
+  'param_index': '电容',
+  'datasheet_meta': '电感',
+  'component_specs': '二极管',
+  'package_info': 'IC芯片',
+  'supplier_data': '连接器'
+};
+
 // 模拟日志数据（第一页10条）
 const mockLogs = [
   { id: 1, tableName: 'parts_catalog', time: '2025-01-15 18:30:25', sql: 'SELECT * FROM parts_catalog WHERE partNumber LIKE "%TI%" LIMIT 100', result: '成功返回 45 条数据', source: '查询测试' },
@@ -108,13 +120,15 @@ function renderLogs() {
     logTableBody.innerHTML = pageData.map(log => {
       const resultStatus = getResultStatus(log.result);
       const sourceClass = log.source === '查询测试' ? 'query-test' : 'siliconbom';
+      const tableAlias = tableAliasMap[log.tableName] || log.tableName;
       
       return `
         <tr>
           <td class="mono">${log.id}</td>
           <td>${log.tableName}</td>
+          <td>${tableAlias}</td>
           <td class="mono">${log.time}</td>
-          <td class="sql" title="${log.sql}">${log.sql}</td>
+          <td class="sql sql-copyable" title="${log.sql}" data-sql="${log.sql.replace(/"/g, '&quot;')}" onmouseenter="showCopyButton(this)" onmouseleave="hideCopyButton(this)">${log.sql}</td>
           <td class="result">
             <span class="status-badge ${resultStatus}">${log.result}</span>
           </td>
@@ -125,7 +139,7 @@ function renderLogs() {
       `;
     }).join('');
   } else {
-    logTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--muted);">暂无数据</td></tr>';
+    logTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; color: var(--muted);">暂无数据</td></tr>';
   }
   
   // 渲染分页
@@ -185,4 +199,78 @@ window.resetFilters = function() {
   currentPage = 1;
   renderLogs();
 };
+
+// SQL复制功能
+window.showCopyButton = function(element) {
+  // 如果已经有复制按钮，不重复创建
+  if (element.querySelector('.copy-btn')) return;
+  
+  const copyBtn = document.createElement('button');
+  copyBtn.className = 'copy-btn';
+  copyBtn.innerHTML = '复制';
+  copyBtn.title = '点击复制SQL';
+  copyBtn.onclick = function(e) {
+    e.stopPropagation();
+    copySQLToClipboard(element);
+  };
+  
+  element.style.position = 'relative';
+  element.appendChild(copyBtn);
+};
+
+window.hideCopyButton = function(element) {
+  const copyBtn = element.querySelector('.copy-btn');
+  if (copyBtn) {
+    copyBtn.remove();
+  }
+};
+
+function copySQLToClipboard(element) {
+  const sql = element.getAttribute('data-sql').replace(/&quot;/g, '"');
+  
+  // 使用现代剪贴板API
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(sql).then(() => {
+      showCopySuccess(element);
+    }).catch(() => {
+      // 降级方案
+      fallbackCopy(sql, element);
+    });
+  } else {
+    // 降级方案
+    fallbackCopy(sql, element);
+  }
+}
+
+function fallbackCopy(text, element) {
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  textarea.style.position = 'fixed';
+  textarea.style.opacity = '0';
+  document.body.appendChild(textarea);
+  textarea.select();
+  
+  try {
+    document.execCommand('copy');
+    showCopySuccess(element);
+  } catch (err) {
+    console.error('复制失败:', err);
+  }
+  
+  document.body.removeChild(textarea);
+}
+
+function showCopySuccess(element) {
+  const copyBtn = element.querySelector('.copy-btn');
+  if (copyBtn) {
+    const originalText = copyBtn.innerHTML;
+    copyBtn.innerHTML = '已复制';
+    copyBtn.style.background = 'rgba(122, 167, 179, 0.8)';
+    
+    setTimeout(() => {
+      copyBtn.innerHTML = originalText;
+      copyBtn.style.background = '';
+    }, 1500);
+  }
+}
 

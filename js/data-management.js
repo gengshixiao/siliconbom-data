@@ -268,7 +268,7 @@ function renderTableData() {
   // 渲染表头
   if (pageData.length > 0) {
     const columns = Object.keys(pageData[0]).filter(key => 
-      key !== 'id' && key !== 'stock' && key !== 'price' && key !== 'datasheetUrl'
+      key !== 'id' && key !== 'stock' && key !== 'price'
     );
     tableHead.innerHTML = `
       <tr>
@@ -280,12 +280,11 @@ function renderTableData() {
     // 渲染表体
     tableBody.innerHTML = pageData.map(row => `
       <tr>
-        ${columns.map(col => `<td class="mono">${formatCellValue(row[col], col)}</td>`).join('')}
+        ${columns.map(col => `<td class="mono">${formatCellValue(row[col], col, row.id)}</td>`).join('')}
         <td class="sticky-actions-cell">
           <div class="data-table-actions">
             <button class="action-btn edit" onclick="editRow(${row.id})">编辑</button>
             <button class="action-btn delete" onclick="deleteRow(${row.id})">删除</button>
-            <button class="action-btn manual" onclick="openDataManual(${row.id})">数据手册</button>
           </div>
         </td>
       </tr>
@@ -327,7 +326,8 @@ function getColumnName(key) {
     package: '封装',
     stock: '库存',
     price: '价格',
-    inputMethod: '录入方式'
+    inputMethod: '录入方式',
+    datasheetUrl: '数据手册'
   };
   return names[key] || key;
 }
@@ -343,10 +343,26 @@ function getInputMethodText(value) {
 }
 
 // 格式化单元格值
-function formatCellValue(value, key) {
-  if (value === null || value === undefined) return '-';
+function formatCellValue(value, key, rowId) {
+  if (value === null || value === undefined || value === '') {
+    return '-';
+  }
   if (key === 'inputMethod') {
     return getInputMethodText(value);
+  }
+  if (key === 'datasheetUrl') {
+    // 提取域名或简化显示
+    let displayText = value;
+    try {
+      const url = new URL(value);
+      displayText = url.hostname + (url.pathname.length > 20 ? url.pathname.substring(0, 20) + '...' : url.pathname);
+    } catch (e) {
+      // 如果不是有效URL，截断显示
+      if (value.length > 40) {
+        displayText = value.substring(0, 40) + '...';
+      }
+    }
+    return `<a href="javascript:void(0)" class="datasheet-link-cell" style="color: var(--primary); text-decoration: none; cursor: pointer; border-bottom: 1px solid var(--primary); padding-bottom: 1px;" onclick="openDatasheetFromLink(${rowId})" title="点击查看数据手册：${value}">${displayText}</a>`;
   }
   if (typeof value === 'number') {
     if (value >= 1000) {
@@ -678,6 +694,23 @@ function handleEditSubmit(id) {
     showMessage('编辑成功', 'success');
   }
 }
+
+// 从链接打开数据手册（全局函数，供HTML调用）
+window.openDatasheetFromLink = function(id) {
+  const allData = mockTableData[currentTable.name] || [];
+  const row = allData.find(r => r.id === id);
+  if (!row) return;
+  
+  // 如果没有数据手册URL，不打开
+  if (!row.datasheetUrl) return;
+  
+  const drawer = createPDFDrawer(`${row.partNumber} - 数据手册`, row);
+  
+  // 初始化PDF浏览器功能
+  setTimeout(() => {
+    initPDFViewer(row);
+  }, 50);
+};
 
 // 打开数据手册抽屉（全局函数，供HTML调用）
 window.openDataManual = function(id) {

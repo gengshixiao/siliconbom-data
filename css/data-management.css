@@ -1008,6 +1008,49 @@
   box-shadow: 0 4px 12px rgba(90, 138, 150, 0.4);
 }
 
+/* 数据手册链接样式 */
+.data-table td a.datasheet-link-cell {
+  transition: all 0.2s ease;
+  display: inline-block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  position: relative;
+  padding-right: 18px;
+}
+
+.data-table td a.datasheet-link-cell::after {
+  content: '📄';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11px;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+
+.data-table td a.datasheet-link-cell:hover {
+  color: var(--a2);
+  border-bottom-color: var(--a2);
+  transform: translateX(2px);
+}
+
+.data-table td a.datasheet-link-cell:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.data-table td a.datasheet-link-cell:active {
+  transform: translateX(0);
+}
+
+[data-theme="light"] .data-table td a.datasheet-link-cell:hover {
+  color: var(--a1);
+  border-bottom-color: var(--a1);
+}
+
 /* 响应式 */
 @media (max-width: 768px) {
   .table-catalog {
