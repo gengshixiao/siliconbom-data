@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>工作台 - 硅宝数据平台</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="https://chat-web-1253214834.cos.ap-beijing.myqcloud.com/image/f4f1acead1b2b1cfc74946089e643749.png" alt="Logo" class="sidebar-logo">
+        <div class="sidebar-title">硅宝数据平台</div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item active">
+          <span>工作台</span>
+        </a>
+        <a href="data-management.html" class="nav-item">
+          <span>数据管理</span>
+        </a>
+        <a href="log-management.html" class="nav-item">
+          <span>日志管理</span>
+        </a>
+      </nav>
+    </aside>
+    <button id="sidebarToggle" class="sidebar-toggle" title="展开/收起菜单"></button>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+      <!-- 顶部导航栏 -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="topbar-title">工作台</h1>
+        </div>
+        <div class="topbar-right">
+          <button id="themeToggle" class="btn theme-toggle" title="切换主题"></button>
+          <span class="user-info">
+            <span id="userInfo">admin</span>
+          </span>
+          <button id="logoutBtn" class="btn logout-btn">退出登录</button>
+        </div>
+      </header>
+
+      <!-- 内容区域 -->
+      <main class="content-area">
+        <div class="dashboard-wrap">
+          <div class="dashboard-controls">
+            <h1 class="dashboard-title">数据平台看板</h1>
+            <button class="btn">导出</button>
+          </div>
+
+          <!-- KPI 指标条 -->
+          <section class="kpis">
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>数据总行数</span>
+              </div>
+              <div class="kpi-value mono">318,420,918</div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>数据表总数</span>
+              </div>
+              <div class="kpi-value mono">128</div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>数据总 Size</span>
+              </div>
+              <div class="kpi-value mono">1.84 TB</div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>查询总次数</span>
+              </div>
+              <div class="kpi-value mono">92,610</div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>成功（非空）</span>
+              </div>
+              <div class="kpi-value mono">61,324</div>
+            </div>
+
+            <div class="card kpi-card">
+              <div class="kpi-head">
+                <span>空值 / 失败</span>
+              </div>
+              <div class="kpi-value mono">21,106 / 10,180</div>
+            </div>
+          </section>
+
+          <!-- 数据量级排名 -->
+          <section class="dashboard-row">
+            <div class="card span-12">
+              <div class="panel-header">
+                <div>
+                  <p class="panel-title">数据量级排名</p>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="panel-box">
+                  <div style="display:grid;grid-template-columns: 1fr 1fr;gap:14px;">
+                    <!-- Top tables by rows -->
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px 12px 0;color:var(--muted);font-size:12px;">数据表 Top5</div>
+                      <table class="rank-table">
+                        <thead>
+                          <tr>
+                            <th style="width:42%;">表名</th>
+                            <th style="width:26%;">行数</th>
+                            <th style="width:32%;">占比</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="mono">MOSFET</td>
+                            <td class="mono">98,420,110</td>
+                            <td><div class="bar"><i style="width:100%"></i></div></td>
+                          </tr>
+                          <tr>
+                            <td class="mono">三极管</td>
+                            <td class="mono">64,118,902</td>
+                            <td><div class="bar"><i style="width:65%"></i></div></td>
+                          </tr>
+                          <tr>
+                            <td class="mono">电阻</td>
+                            <td class="mono">41,006,700</td>
+                            <td><div class="bar"><i style="width:42%"></i></div></td>
+                          </tr>
+                          <tr>
+                            <td class="mono">电容</td>
+                            <td class="mono">29,880,114</td>
+                            <td><div class="bar"><i style="width:30%"></i></div></td>
+                          </tr>
+                          <tr>
+                            <td class="mono">电感</td>
+                            <td class="mono">18,204,982</td>
+                            <td><div class="bar"><i style="width:19%"></i></div></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+
+                    <!-- Brands by rows and size -->
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px 12px 0;color:var(--muted);font-size:12px;">品牌 Top5</div>
+                      <table class="rank-table">
+                        <thead>
+                          <tr>
+                            <th style="width:42%;">品牌（厂商）</th>
+                            <th style="width:28%;">行数</th>
+                            <th style="width:30%;">Size</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Texas Instruments</td>
+                            <td class="mono">36,204,118</td>
+                            <td class="mono">210 GB</td>
+                          </tr>
+                          <tr>
+                            <td>Murata</td>
+                            <td class="mono">28,110,940</td>
+                            <td class="mono">176 GB</td>
+                          </tr>
+                          <tr>
+                            <td>STMicroelectronics</td>
+                            <td class="mono">22,640,221</td>
+                            <td class="mono">158 GB</td>
+                          </tr>
+                          <tr>
+                            <td>Infineon</td>
+                            <td class="mono">19,884,560</td>
+                            <td class="mono">141 GB</td>
+                          </tr>
+                          <tr>
+                            <td>NXP Semiconductors</td>
+                            <td class="mono">16,902,330</td>
+                            <td class="mono">123 GB</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 查询次数趋势 -->
+          <section class="dashboard-row">
+            <div class="card span-8">
+              <div class="panel-header">
+                <div>
+                  <p class="panel-title">查询次数趋势</p>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="panel-box" style="overflow: visible; padding-bottom: 40px;">
+                  <div id="queryTrendChart" style="width: 100%; height: 280px; overflow: visible;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card span-4">
+              <div class="panel-header">
+                <div>
+                  <p class="panel-title">表查询次数 Top5</p>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="panel-box">
+                  <table class="rank-table">
+                    <thead>
+                      <tr>
+                        <th style="width:58%;">表名</th>
+                        <th style="width:22%;">次数</th>
+                        <th style="width:20%;">占比</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="mono">MOSFET</td>
+                        <td class="mono">21,804</td>
+                        <td class="mono">23.5%</td>
+                      </tr>
+                      <tr>
+                        <td class="mono">电感</td>
+                        <td class="mono">14,112</td>
+                        <td class="mono">15.2%</td>
+                      </tr>
+                      <tr>
+                        <td class="mono">电容</td>
+                        <td class="mono">12,480</td>
+                        <td class="mono">13.5%</td>
+                      </tr>
+                      <tr>
+                        <td class="mono">电阻</td>
+                        <td class="mono">9,734</td>
+                        <td class="mono">10.5%</td>
+                      </tr>
+                      <tr>
+                        <td class="mono">三极管</td>
+                        <td class="mono">8,920</td>
+                        <td class="mono">9.6%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div style="margin-top:12px;display:grid;gap:10px;">
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px;">
+                        <div style="color:var(--muted);font-size:12px;margin-bottom:8px;">查询结果分布</div>
+                        <div id="queryResultChart" style="width: 100%; height: 180px;"></div>
+                      </div>
+                    </div>
+
+                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
+                      <div style="padding:12px;">
+                        <div style="color:var(--muted);font-size:12px;">写操作拦截</div>
+                        <div style="font-size:18px;font-weight:900;margin-top:8px;" class="mono">1,284</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
+

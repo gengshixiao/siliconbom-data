@@ -1,0 +1,272 @@
+/* 主布局样式 */
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  background: var(--bg);
+  overflow: hidden;
+}
+
+/* 侧边栏 */
+.sidebar {
+  width: 240px;
+  background: var(--panel);
+  border-right: 1px solid var(--stroke);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  position: relative;
+}
+
+.sidebar.collapsed {
+  width: 0;
+}
+
+.sidebar.collapsed .sidebar-header,
+.sidebar.collapsed .sidebar-nav {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid var(--stroke);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.sidebar-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+/* 侧边栏展开/收起按钮 - 放在侧边栏右侧边缘外部 */
+.sidebar-toggle {
+  position: fixed;
+  left: 240px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: var(--panel);
+  border: 1px solid var(--stroke);
+  border-left: none;
+  border-radius: 0 6px 6px 0;
+  color: var(--muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 2px 0 4px rgba(0,0,0,.1);
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-toggle:hover {
+  background: var(--panel2);
+  color: var(--text);
+}
+
+.sidebar-toggle::before {
+  content: '◀';
+  transition: all 0.3s ease;
+  line-height: 1;
+}
+
+.sidebar.collapsed + .sidebar-toggle {
+  left: 0;
+  transform: translateY(-50%);
+}
+
+.sidebar.collapsed + .sidebar-toggle::before {
+  content: '▶';
+}
+
+[data-theme="light"] .sidebar-toggle {
+  box-shadow: 2px 0 4px rgba(0,0,0,.05);
+}
+
+
+.sidebar-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: var(--muted);
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  justify-content: flex-start;
+}
+
+.nav-item span {
+  transition: opacity 0.3s ease, width 0.3s ease;
+  overflow: hidden;
+}
+
+.nav-item:hover {
+  background: var(--panel2);
+  color: var(--text);
+}
+
+[data-theme="light"] .nav-item:hover {
+  background: rgba(0,0,0,.03);
+}
+
+.nav-item.active {
+  background: var(--panel2);
+  color: var(--a1);
+  border-left: 3px solid var(--a1);
+  padding-left: 9px;
+}
+
+[data-theme="light"] .nav-item.active {
+  background: rgba(90,138,150,.1);
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+/* 主内容区 */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* 顶部导航栏 */
+.topbar {
+  height: 60px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--stroke);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  flex-shrink: 0;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.topbar-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-toggle {
+  padding: 6px 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 6px;
+}
+
+.theme-toggle::before {
+  content: '☀️';
+  font-size: 16px;
+  line-height: 1;
+}
+
+[data-theme="light"] .theme-toggle::before {
+  content: '🌙';
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* 内容区域 */
+.content-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 20px;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+  
+  .sidebar-title {
+    font-size: 14px;
+  }
+  
+  .topbar-title {
+    font-size: 16px;
+  }
+}
+

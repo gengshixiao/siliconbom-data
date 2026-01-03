@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日志管理 - 硅宝数据平台</title>
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/log-management.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- 侧边栏 -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="https://chat-web-1253214834.cos.ap-beijing.myqcloud.com/image/f4f1acead1b2b1cfc74946089e643749.png" alt="Logo" class="sidebar-logo">
+        <div class="sidebar-title">硅宝数据平台</div>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item">
+          <span>工作台</span>
+        </a>
+        <a href="data-management.html" class="nav-item">
+          <span>数据管理</span>
+        </a>
+        <a href="log-management.html" class="nav-item active">
+          <span>日志管理</span>
+        </a>
+      </nav>
+    </aside>
+    <button id="sidebarToggle" class="sidebar-toggle" title="展开/收起菜单"></button>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+      <!-- 顶部导航栏 -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <h1 class="topbar-title">日志管理</h1>
+        </div>
+        <div class="topbar-right">
+          <button id="themeToggle" class="btn theme-toggle" title="切换主题"></button>
+          <span class="user-info">
+            <span id="userInfo">admin</span>
+          </span>
+          <button id="logoutBtn" class="btn logout-btn">退出登录</button>
+        </div>
+      </header>
+
+      <!-- 内容区域 -->
+      <main class="content-area">
+        <div class="log-management-wrap">
+          <div class="log-header">
+            <h1 class="log-title">日志管理</h1>
+          </div>
+
+          <div class="log-filters">
+            <div class="filter-group">
+              <label class="filter-label">表名称：</label>
+              <input type="text" class="input filter-input" id="filterTableName" placeholder="搜索表名称...">
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">执行来源：</label>
+              <select class="input filter-select" id="filterSource">
+                <option value="">全部</option>
+                <option value="查询测试">查询测试</option>
+                <option value="硅宝调用">硅宝调用</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">时间范围：</label>
+              <select class="input filter-select" id="filterTimeRange">
+                <option value="">全部</option>
+                <option value="1">近1天</option>
+                <option value="7">近7天</option>
+                <option value="30">近30天</option>
+              </select>
+            </div>
+            <button class="btn" onclick="resetFilters()">重置</button>
+          </div>
+
+          <div class="log-table-container">
+            <div class="log-table-wrapper">
+              <table class="log-table">
+                <thead>
+                  <tr>
+                    <th style="width: 80px;">日志ID</th>
+                    <th style="width: 150px;">表名称</th>
+                    <th style="width: 120px;">表含义</th>
+                    <th style="width: 160px;">时间</th>
+                    <th style="width: 400px;">SQL</th>
+                    <th style="width: 150px;">执行结果</th>
+                    <th style="width: 120px;">执行来源</th>
+                  </tr>
+                </thead>
+                <tbody id="logTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="pagination" id="logPagination"></div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="js/common.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/log-management.js"></script>
+</body>
+</html>
+

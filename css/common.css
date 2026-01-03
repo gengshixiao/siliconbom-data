@@ -1,0 +1,216 @@
+:root {
+  /* 深灰色主题（暗色模式） */
+  --bg: #1e1f21;
+  --panel: #2a2b2d;
+  --panel2: #252628;
+  --stroke: #3a3b3e;
+  --stroke2: #343538;
+  --text: #e9e9ea;
+  --muted: #a8aaad;
+  --muted2: #7f8286;
+  
+  /* 中性色强调 */
+  --a1: #7aa7b3;
+  --a2: #8f87b8;
+  --a3: #9db38a;
+  --bad: #c67b7b;
+  --warn: #c0a56b;
+  
+  --r: 8px;
+  --r2: 10px;
+  --gap: 14px;
+  
+  --font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+          "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans CJK SC", Arial;
+}
+
+[data-theme="light"] {
+  /* 浅色模式 */
+  --bg: #f5f5f7;
+  --panel: #ffffff;
+  --panel2: #fafafa;
+  --stroke: #e5e5e7;
+  --stroke2: #d1d1d3;
+  --text: #1d1d1f;
+  --muted: #6e6e73;
+  --muted2: #86868b;
+  
+  /* 中性色强调（浅色模式调整） */
+  --a1: #5a8a96;
+  --a2: #6f6788;
+  --a3: #7d936a;
+  --bad: #a65b5b;
+  --warn: #a0854b;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.5;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 通用按钮样式 */
+.btn {
+  border: 1px solid var(--stroke);
+  background: var(--panel2);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: var(--font);
+}
+
+.btn:hover {
+  background: var(--panel);
+  border-color: var(--stroke2);
+}
+
+[data-theme="light"] .btn {
+  background: #ffffff;
+  border-color: var(--stroke);
+  color: var(--text);
+}
+
+[data-theme="light"] .btn:hover {
+  background: #f5f5f7;
+  border-color: var(--stroke2);
+}
+
+.btn-primary {
+  background: var(--a1);
+  border-color: var(--a1);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #6a97a3;
+  border-color: #6a97a3;
+}
+
+[data-theme="light"] .btn-primary {
+  background: #4a7a86;
+  border-color: #4a7a86;
+  color: #ffffff;
+}
+
+[data-theme="light"] .btn-primary:hover {
+  background: #3d6b76;
+  border-color: #3d6b76;
+}
+
+.btn-danger {
+  background: var(--bad);
+  border-color: var(--bad);
+}
+
+.btn-danger:hover {
+  background: #b66b6b;
+  border-color: #b66b6b;
+}
+
+/* 输入框样式 */
+.input {
+  border: 1px solid var(--stroke);
+  background: var(--panel2);
+  color: var(--text);
+  border-radius: 6px;
+  padding: 9px 12px;
+  font-size: 12px;
+  font-family: var(--font);
+  width: 100%;
+  transition: all 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--a1);
+  background: var(--panel);
+}
+
+/* 卡片样式 */
+.card {
+  border: 1px solid var(--stroke);
+  background: var(--panel);
+  border-radius: var(--r2);
+  overflow: visible;
+}
+
+[data-theme="light"] .card {
+  background: var(--panel);
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+
+/* 表格样式 */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  color: var(--text);
+}
+
+.table th,
+.table td {
+  padding: 10px 12px;
+  border-top: 1px solid var(--stroke2);
+  text-align: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table th {
+  color: var(--muted);
+  font-weight: 700;
+  background: var(--panel2);
+  border-top: 1px solid var(--stroke);
+}
+
+.table tbody tr:hover {
+  background: var(--panel2);
+}
+
+/* 工具类 */
+.mono {
+  font-variant-numeric: tabular-nums;
+}
+
+.text-muted {
+  color: var(--muted);
+}
+
+.text-muted2 {
+  color: var(--muted2);
+}
+
+/* 加载动画 */
+.loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--stroke);
+  border-top-color: var(--a1);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* 隐藏类 */
+.hidden {
+  display: none !important;
+}
+
