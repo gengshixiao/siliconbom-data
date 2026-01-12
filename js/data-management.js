@@ -2,29 +2,42 @@
 
 // 模拟数据表列表
 const mockTables = [
-  { id: 1, alias: 'MOSFET', name: 'parts_catalog', rows: 98420110, updateTime: '2025-01-15 18:30:00' },
-  { id: 2, alias: '三极管', name: 'bom_items', rows: 64118902, updateTime: '2025-01-15 17:45:00' },
-  { id: 3, alias: '电阻', name: 'inventory_quotes', rows: 41006700, updateTime: '2025-01-15 16:20:00' },
-  { id: 4, alias: '电容', name: 'param_index', rows: 29880114, updateTime: '2025-01-15 15:10:00' },
-  { id: 5, alias: '电感', name: 'datasheet_meta', rows: 18204982, updateTime: '2025-01-15 14:30:00' },
-  { id: 6, alias: '二极管', name: 'component_specs', rows: 15234056, updateTime: '2025-01-15 13:15:00' },
-  { id: 7, alias: 'IC芯片', name: 'package_info', rows: 12890123, updateTime: '2025-01-15 12:00:00' },
-  { id: 8, alias: '连接器', name: 'supplier_data', rows: 9876543, updateTime: '2025-01-15 11:20:00' },
+  { id: 1, alias: '总表', name: 'all_parts', rows: 267589948, updateTime: '2025-01-15 18:30:00' },
+  { id: 2, alias: 'MOSFET', name: 'mosfet_parts', rows: 98420110, updateTime: '2025-01-15 18:30:00' },
+  { id: 3, alias: '三极管', name: 'transistor_parts', rows: 64118902, updateTime: '2025-01-15 17:45:00' },
+  { id: 4, alias: '电阻', name: 'resistor_parts', rows: 41006700, updateTime: '2025-01-15 16:20:00' },
+  { id: 5, alias: '电容', name: 'capacitor_parts', rows: 29880114, updateTime: '2025-01-15 15:10:00' },
+  { id: 6, alias: '电感', name: 'inductor_parts', rows: 18204982, updateTime: '2025-01-15 14:30:00' },
+  { id: 7, alias: '二极管', name: 'diode_parts', rows: 15234056, updateTime: '2025-01-15 13:15:00' },
+  { id: 8, alias: 'IC芯片', name: 'ic_chip_parts', rows: 12890123, updateTime: '2025-01-15 12:00:00' },
+  { id: 9, alias: '连接器', name: 'connector_parts', rows: 9876543, updateTime: '2025-01-15 11:20:00' },
 ];
 
 // 模拟表明细数据（第一页10条）
 const mockTableData = {
-  parts_catalog: [
-    { id: 1, partNumber: 'TI-74HC00D', manufacturer: 'Texas Instruments', category: 'MOSFET', voltage: '5V', current: '8mA', package: 'SOIC-14', stock: 1250, price: 0.25, inputMethod: 'manual', datasheetUrl: 'https://www.ti.com/lit/ds/symlink/74hc00.pdf' },
-    { id: 2, partNumber: 'ST-MOSFET-2N7000', manufacturer: 'STMicroelectronics', category: 'MOSFET', voltage: '60V', current: '200mA', package: 'TO-92', stock: 3200, price: 0.15, inputMethod: 'datasheet', datasheetUrl: 'https://www.st.com/resource/en/datasheet/2n7000.pdf' },
-    { id: 3, partNumber: 'INF-IPB60N06S4', manufacturer: 'Infineon', category: 'MOSFET', voltage: '60V', current: '50A', package: 'TO-263', stock: 850, price: 1.25, inputMethod: 'import', datasheetUrl: '' },
-    { id: 4, partNumber: 'NXP-BSS138', manufacturer: 'NXP Semiconductors', category: 'MOSFET', voltage: '50V', current: '200mA', package: 'SOT-23', stock: 5600, price: 0.12, inputMethod: 'manual', datasheetUrl: 'https://www.nxp.com/docs/en/data-sheet/BSS138.pdf' },
-    { id: 5, partNumber: 'ON-FDMS86101', manufacturer: 'ON Semiconductor', category: 'MOSFET', voltage: '30V', current: '30A', package: 'Power33', stock: 420, price: 0.85, inputMethod: 'datasheet', datasheetUrl: '' },
-    { id: 6, partNumber: 'VISHAY-SI2302', manufacturer: 'Vishay', category: 'MOSFET', voltage: '20V', current: '4.2A', package: 'SOT-23', stock: 2100, price: 0.18, inputMethod: 'import', datasheetUrl: 'https://www.vishay.com/docs/70660/70660.pdf' },
-    { id: 7, partNumber: 'FAIRCHILD-2N7002', manufacturer: 'Fairchild', category: 'MOSFET', voltage: '60V', current: '115mA', package: 'SOT-23', stock: 3800, price: 0.10, inputMethod: 'manual', datasheetUrl: '' },
-    { id: 8, partNumber: 'ROHM-2SK3019', manufacturer: 'ROHM', category: 'MOSFET', voltage: '60V', current: '5A', package: 'TO-220', stock: 650, price: 0.55, inputMethod: 'datasheet', datasheetUrl: 'https://www.rohm.com/datasheet/2SK3019' },
-    { id: 9, partNumber: 'TOSHIBA-2SK2231', manufacturer: 'Toshiba', category: 'MOSFET', voltage: '200V', current: '6A', package: 'TO-220', stock: 320, price: 1.15, inputMethod: 'import', datasheetUrl: '' },
-    { id: 10, partNumber: 'DIODES-DMN2041L', manufacturer: 'Diodes Inc', category: 'MOSFET', voltage: '20V', current: '4.5A', package: 'SOT-23', stock: 1800, price: 0.22, inputMethod: 'manual', datasheetUrl: 'https://www.diodes.com/assets/Datasheets/DMN2041L.pdf' },
+  all_parts: [
+    { id: 101, partNumber: 'TI-74HC00D', manufacturer: 'Texas Instruments', category: 'MOSFET', voltage: '5V', current: '8mA', package: 'SOIC-14', stock: 1250, price: 0.25, inputMethod: 'manual', datasheetUrl: 'https://www.ti.com/lit/ds/symlink/74hc00.pdf', updateTime: '2025-01-15 18:30:00' },
+    { id: 102, partNumber: 'BC547B', manufacturer: 'Fairchild', category: '三极管', voltage: '45V', current: '100mA', package: 'TO-92', stock: 5200, price: 0.08, inputMethod: 'datasheet', datasheetUrl: 'https://www.fairchild.com/datasheet/BC547.pdf', updateTime: '2025-01-15 17:45:00' },
+    { id: 103, partNumber: 'RES-10K-0603', manufacturer: 'Yageo', category: '电阻', voltage: '0.25W', current: '0.1A', package: '0603', stock: 15000, price: 0.01, inputMethod: 'import', datasheetUrl: '', updateTime: '2025-01-15 16:20:00' },
+    { id: 104, partNumber: 'CAP-100UF-0805', manufacturer: 'Murata', category: '电容', voltage: '16V', current: '100uF', package: '0805', stock: 8800, price: 0.05, inputMethod: 'manual', datasheetUrl: 'https://www.murata.com/datasheet/CAP100UF.pdf', updateTime: '2025-01-15 15:10:00' },
+    { id: 105, partNumber: 'IND-47UH-1206', manufacturer: 'TDK', category: '电感', voltage: '1A', current: '47uH', package: '1206', stock: 3200, price: 0.15, inputMethod: 'datasheet', datasheetUrl: 'https://www.tdk.com/datasheet/IND47UH.pdf', updateTime: '2025-01-15 14:30:00' },
+    { id: 106, partNumber: '1N4007', manufacturer: 'ON Semiconductor', category: '二极管', voltage: '1000V', current: '1A', package: 'DO-41', stock: 12000, price: 0.03, inputMethod: 'import', datasheetUrl: 'https://www.onsemi.com/datasheet/1N4007.pdf', updateTime: '2025-01-15 13:15:00' },
+    { id: 107, partNumber: 'STM32F103C8T6', manufacturer: 'STMicroelectronics', category: 'IC芯片', voltage: '3.3V', current: '72MHz', package: 'LQFP-48', stock: 850, price: 3.50, inputMethod: 'datasheet', datasheetUrl: 'https://www.st.com/datasheet/STM32F103C8T6.pdf', updateTime: '2025-01-15 12:00:00' },
+    { id: 108, partNumber: 'CONN-USB-A-F', manufacturer: 'Amphenol', category: '连接器', voltage: '5V', current: '2A', package: 'USB-A', stock: 5600, price: 0.45, inputMethod: 'manual', datasheetUrl: 'https://www.amphenol.com/datasheet/USB-A.pdf', updateTime: '2025-01-15 11:20:00' },
+    { id: 109, partNumber: 'ST-MOSFET-2N7000', manufacturer: 'STMicroelectronics', category: 'MOSFET', voltage: '60V', current: '200mA', package: 'TO-92', stock: 3200, price: 0.15, inputMethod: 'datasheet', datasheetUrl: 'https://www.st.com/resource/en/datasheet/2n7000.pdf', updateTime: '2025-01-15 17:45:00' },
+    { id: 110, partNumber: 'LM7805', manufacturer: 'Texas Instruments', category: 'IC芯片', voltage: '5V', current: '1A', package: 'TO-220', stock: 2400, price: 0.35, inputMethod: 'manual', datasheetUrl: 'https://www.ti.com/lit/ds/symlink/lm7805.pdf', updateTime: '2025-01-15 10:45:00' },
+  ],
+  mosfet_parts: [
+    { id: 1, partNumber: 'TI-74HC00D', manufacturer: 'Texas Instruments', category: 'MOSFET', voltage: '5V', current: '8mA', package: 'SOIC-14', stock: 1250, price: 0.25, inputMethod: 'manual', datasheetUrl: 'https://www.ti.com/lit/ds/symlink/74hc00.pdf', updateTime: '2025-01-15 18:30:00' },
+    { id: 2, partNumber: 'ST-MOSFET-2N7000', manufacturer: 'STMicroelectronics', category: 'MOSFET', voltage: '60V', current: '200mA', package: 'TO-92', stock: 3200, price: 0.15, inputMethod: 'datasheet', datasheetUrl: 'https://www.st.com/resource/en/datasheet/2n7000.pdf', updateTime: '2025-01-15 17:45:00' },
+    { id: 3, partNumber: 'INF-IPB60N06S4', manufacturer: 'Infineon', category: 'MOSFET', voltage: '60V', current: '50A', package: 'TO-263', stock: 850, price: 1.25, inputMethod: 'import', datasheetUrl: '', updateTime: '2025-01-15 16:20:00' },
+    { id: 4, partNumber: 'NXP-BSS138', manufacturer: 'NXP Semiconductors', category: 'MOSFET', voltage: '50V', current: '200mA', package: 'SOT-23', stock: 5600, price: 0.12, inputMethod: 'manual', datasheetUrl: 'https://www.nxp.com/docs/en/data-sheet/BSS138.pdf', updateTime: '2025-01-15 15:10:00' },
+    { id: 5, partNumber: 'ON-FDMS86101', manufacturer: 'ON Semiconductor', category: 'MOSFET', voltage: '30V', current: '30A', package: 'Power33', stock: 420, price: 0.85, inputMethod: 'datasheet', datasheetUrl: '', updateTime: '2025-01-15 14:30:00' },
+    { id: 6, partNumber: 'VISHAY-SI2302', manufacturer: 'Vishay', category: 'MOSFET', voltage: '20V', current: '4.2A', package: 'SOT-23', stock: 2100, price: 0.18, inputMethod: 'import', datasheetUrl: 'https://www.vishay.com/docs/70660/70660.pdf', updateTime: '2025-01-15 13:15:00' },
+    { id: 7, partNumber: 'FAIRCHILD-2N7002', manufacturer: 'Fairchild', category: 'MOSFET', voltage: '60V', current: '115mA', package: 'SOT-23', stock: 3800, price: 0.10, inputMethod: 'manual', datasheetUrl: '', updateTime: '2025-01-15 12:00:00' },
+    { id: 8, partNumber: 'ROHM-2SK3019', manufacturer: 'ROHM', category: 'MOSFET', voltage: '60V', current: '5A', package: 'TO-220', stock: 650, price: 0.55, inputMethod: 'datasheet', datasheetUrl: 'https://www.rohm.com/datasheet/2SK3019', updateTime: '2025-01-15 11:20:00' },
+    { id: 9, partNumber: 'TOSHIBA-2SK2231', manufacturer: 'Toshiba', category: 'MOSFET', voltage: '200V', current: '6A', package: 'TO-220', stock: 320, price: 1.15, inputMethod: 'import', datasheetUrl: '', updateTime: '2025-01-15 10:45:00' },
+    { id: 10, partNumber: 'DIODES-DMN2041L', manufacturer: 'Diodes Inc', category: 'MOSFET', voltage: '20V', current: '4.5A', package: 'SOT-23', stock: 1800, price: 0.22, inputMethod: 'manual', datasheetUrl: 'https://www.diodes.com/assets/Datasheets/DMN2041L.pdf', updateTime: '2025-01-15 09:30:00' },
   ]
 };
 
@@ -33,6 +46,7 @@ let currentView = 'catalog'; // 'catalog' 或 'detail'
 let currentTable = null;
 let currentPage = 1;
 let pageSize = 10;
+let catalogSearchKeyword = ''; // 目录页搜索关键词
 let searchFilters = {
   partNumber: '',
   manufacturer: '',
@@ -40,6 +54,27 @@ let searchFilters = {
   current: '',
   inputMethod: ''
 };
+
+// Datasheet解析任务状态管理
+let datasheetTasks = []; // 任务列表
+let taskIdCounter = 1; // 任务ID计数器
+
+// 预置的Datasheet文件列表（用于初始化已上传文件）
+const presetDatasheetFiles = [
+  { name: 'TI-MOSFET-2N7000.pdf', size: 245000 },
+  { name: 'ST-Transistor-BC547B.pdf', size: 189000 },
+  { name: 'ON-Diode-1N4007.pdf', size: 156000 },
+  { name: 'Murata-Capacitor-100UF.pdf', size: 320000 },
+  { name: 'Yageo-Resistor-10K.pdf', size: 128000 },
+  { name: 'TDK-Inductor-47UH.pdf', size: 278000 },
+  { name: 'STM32F103C8T6-Datasheet.pdf', size: 1250000 },
+  { name: 'LM7805-Voltage-Regulator.pdf', size: 420000 },
+  { name: 'USB-Connector-Amphenol.pdf', size: 198000 },
+  { name: 'Infineon-MOSFET-IPB60N06.pdf', size: 356000 }
+];
+
+// Datasheet解析弹窗中的已上传文件列表
+let uploadedDatasheetFiles = [];
 
 document.addEventListener('DOMContentLoaded', () => {
   initDataManagement();
@@ -72,10 +107,24 @@ function showTableCatalog() {
   
   container.innerHTML = `
     <div class="data-management-wrap">
-      <h1 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">数据管理</h1>
+      <div class="catalog-header">
+        <h1 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">数据管理</h1>
+        <input type="text" class="input catalog-search-input" id="catalogSearchInput" placeholder="搜索表名（中文/英文）" value="${catalogSearchKeyword}">
+      </div>
       <div class="table-catalog" id="tableCatalog"></div>
     </div>
   `;
+  
+  // 初始化搜索框事件（回车搜索）
+  const searchInput = document.getElementById('catalogSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        catalogSearchKeyword = e.target.value;
+        renderTableCatalog();
+      }
+    });
+  }
   
   renderTableCatalog();
 }
@@ -85,7 +134,17 @@ function renderTableCatalog() {
   const catalog = document.getElementById('tableCatalog');
   if (!catalog) return;
   
-  catalog.innerHTML = mockTables.map(table => `
+  // 根据搜索关键词过滤表
+  let filteredTables = mockTables;
+  if (catalogSearchKeyword.trim()) {
+    const keyword = catalogSearchKeyword.trim().toLowerCase();
+    filteredTables = mockTables.filter(table => 
+      table.name.toLowerCase().includes(keyword) || 
+      table.alias.toLowerCase().includes(keyword)
+    );
+  }
+  
+  catalog.innerHTML = filteredTables.map(table => `
     <div class="table-card" onclick="openTableDetail(${table.id})">
       <div class="table-card-header">
         <div class="table-card-title">${table.name}</div>
@@ -104,6 +163,15 @@ function renderTableCatalog() {
     </div>
   `).join('');
 }
+
+// 处理目录页搜索（全局函数，供HTML调用）
+window.handleCatalogSearch = function() {
+  const searchInput = document.getElementById('catalogSearchInput');
+  if (searchInput) {
+    catalogSearchKeyword = searchInput.value;
+    renderTableCatalog();
+  }
+};
 
 // 打开表明细页（全局函数，供HTML调用）
 window.openTableDetail = function(tableId) {
@@ -129,14 +197,31 @@ function showTableDetail(table) {
           <div class="table-detail-title">${table.alias} (${table.name})</div>
         </div>
         <div class="table-detail-actions">
+          ${table.name !== 'all_parts' ? `
+          <div class="task-notification-dropdown" id="taskNotificationDropdown">
+            <button class="btn task-notification-btn" id="taskNotificationBtn" onclick="toggleTaskNotificationMenu(event)" title="解析任务">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="task-notification-badge" id="taskNotificationBadge" style="display: none;">0</span>
+            </button>
+            <div class="task-notification-menu" id="taskNotificationMenu">
+              <div class="task-notification-header">解析任务</div>
+              <div class="task-notification-list" id="taskNotificationList">
+                <div class="task-notification-empty">暂无任务</div>
+              </div>
+            </div>
+          </div>
           <div class="action-dropdown">
-            <button class="btn btn-primary action-dropdown-btn" id="addDataBtn">录入数据</button>
+            <button class="btn btn-primary action-dropdown-btn" id="addDataBtn" onclick="toggleAddDataMenu(event)">录入数据</button>
             <div class="action-dropdown-menu" id="addDataMenu">
               <button class="action-dropdown-item" onclick="openAddModal('manual')">手动录入</button>
               <button class="action-dropdown-item" onclick="openAddModal('import')">批量导入</button>
               <button class="action-dropdown-item" onclick="openAddModal('datasheet')">Datasheet解析</button>
             </div>
           </div>
+          ` : ''}
           <button class="btn" onclick="openQueryTest()">查询测试</button>
         </div>
       </div>
@@ -206,6 +291,26 @@ function initTableDetailEvents() {
       }
     });
   });
+  
+  // 点击外部关闭下拉框
+  document.addEventListener('click', (e) => {
+    const dropdown = document.querySelector('.action-dropdown');
+    const menu = document.getElementById('addDataMenu');
+    if (dropdown && menu && !dropdown.contains(e.target)) {
+      menu.classList.remove('show');
+    }
+    
+    // 点击外部关闭任务通知菜单
+    const taskDropdown = document.querySelector('.task-notification-dropdown');
+    const taskMenu = document.getElementById('taskNotificationMenu');
+    if (taskDropdown && taskMenu && !taskDropdown.contains(e.target)) {
+      taskMenu.classList.remove('show');
+    }
+  });
+  
+  // 初始化任务通知按钮和列表
+  updateTaskNotificationButton();
+  renderTaskNotificationList();
 }
 
 // 渲染表格数据
@@ -270,9 +375,11 @@ function renderTableData() {
     const columns = Object.keys(pageData[0]).filter(key => 
       key !== 'id' && key !== 'stock' && key !== 'price'
     );
+    // 确保updateTime在最后（如果存在）
+    const sortedColumns = [...columns.filter(col => col !== 'updateTime'), ...(columns.includes('updateTime') ? ['updateTime'] : [])];
     tableHead.innerHTML = `
       <tr>
-        ${columns.map(col => `<th>${getColumnName(col)}</th>`).join('')}
+        ${sortedColumns.map(col => `<th>${getColumnName(col)}</th>`).join('')}
         <th class="sticky-actions-header" style="width: 180px;">操作</th>
       </tr>
     `;
@@ -280,7 +387,7 @@ function renderTableData() {
     // 渲染表体
     tableBody.innerHTML = pageData.map(row => `
       <tr>
-        ${columns.map(col => `<td class="mono">${formatCellValue(row[col], col, row.id)}</td>`).join('')}
+        ${sortedColumns.map(col => `<td class="mono">${formatCellValue(row[col], col, row.id)}</td>`).join('')}
         <td class="sticky-actions-cell">
           <div class="data-table-actions">
             <button class="action-btn edit" onclick="editRow(${row.id})">编辑</button>
@@ -327,7 +434,8 @@ function getColumnName(key) {
     stock: '库存',
     price: '价格',
     inputMethod: '录入方式',
-    datasheetUrl: '数据手册'
+    datasheetUrl: '数据手册',
+    updateTime: '更新时间'
   };
   return names[key] || key;
 }
@@ -342,6 +450,37 @@ function getInputMethodText(value) {
   return methods[value] || value;
 }
 
+// 格式化日期时间（精确到分钟）
+function formatDateTimeToMinute(dateTime) {
+  if (!dateTime) return '-';
+  try {
+    const d = new Date(dateTime);
+    if (isNaN(d.getTime())) {
+      // 如果不是有效日期，尝试解析字符串格式 "YYYY-MM-DD HH:mm:ss"
+      const parts = dateTime.split(' ');
+      if (parts.length >= 2) {
+        const datePart = parts[0];
+        const timePart = parts[1];
+        if (timePart) {
+          const timeParts = timePart.split(':');
+          if (timeParts.length >= 2) {
+            return `${datePart} ${timeParts[0]}:${timeParts[1]}`;
+          }
+        }
+      }
+      return dateTime;
+    }
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    const hours = String(d.getHours()).padStart(2, '0');
+    const minutes = String(d.getMinutes()).padStart(2, '0');
+    return `${year}-${month}-${day} ${hours}:${minutes}`;
+  } catch (e) {
+    return dateTime;
+  }
+}
+
 // 格式化单元格值
 function formatCellValue(value, key, rowId) {
   if (value === null || value === undefined || value === '') {
@@ -349,6 +488,9 @@ function formatCellValue(value, key, rowId) {
   }
   if (key === 'inputMethod') {
     return getInputMethodText(value);
+  }
+  if (key === 'updateTime') {
+    return formatDateTimeToMinute(value);
   }
   if (key === 'datasheetUrl') {
     // 提取域名或简化显示
@@ -362,7 +504,9 @@ function formatCellValue(value, key, rowId) {
         displayText = value.substring(0, 40) + '...';
       }
     }
-    return `<a href="javascript:void(0)" class="datasheet-link-cell" style="color: var(--primary); text-decoration: none; cursor: pointer; border-bottom: 1px solid var(--primary); padding-bottom: 1px;" onclick="openDatasheetFromLink(${rowId})" title="点击查看数据手册：${value}">${displayText}</a>`;
+    // SVG文档图标
+    const datasheetIcon = `<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" style="display: inline-block; vertical-align: middle; margin-left: 4px; opacity: 0.6; flex-shrink: 0;"><path d="M2 1.5h5.5L10 4.5v6H2v-9z" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.5 1.5v3h3" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 6.5h5M3.5 8.5h5" stroke-linecap="round"/></svg>`;
+    return `<a href="javascript:void(0)" class="datasheet-link-cell" style="color: var(--primary); text-decoration: none; cursor: pointer; border-bottom: 1px solid var(--primary); padding-bottom: 1px; display: inline-flex; align-items: center; gap: 4px;" onclick="openDatasheetFromLink(${rowId})" title="点击查看数据手册：${value}">${displayText}${datasheetIcon}</a>`;
   }
   if (typeof value === 'number') {
     if (value >= 1000) {
@@ -509,20 +653,98 @@ window.deleteRow = function(id) {
   });
 };
 
+// 切换录入数据下拉菜单（全局函数，供HTML调用）
+window.toggleAddDataMenu = function(event) {
+  event.stopPropagation();
+  const menu = document.getElementById('addDataMenu');
+  if (menu) {
+    menu.classList.toggle('show');
+  }
+};
+
 // 打开添加弹窗（全局函数，供HTML调用）
 window.openAddModal = function(type) {
-  const modal = createModal('录入数据', getAddFormHTML(type), () => {
+  // 关闭下拉菜单
+  const menu = document.getElementById('addDataMenu');
+  if (menu) {
+    menu.classList.remove('show');
+  }
+  
+  const modal = createModal(type === 'datasheet' ? 'Datasheet解析' : '录入数据', getAddFormHTML(type), () => {
     const form = document.getElementById('addForm');
     if (form) {
-      form.addEventListener('submit', (e) => {
+      // 如果是datasheet类型，初始化文件上传事件
+      if (type === 'datasheet') {
+        initDatasheetFileUpload();
+      }
+      
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        handleAddSubmit(type);
+        await handleAddSubmit(type);
       });
     }
   });
   
   document.body.appendChild(modal);
   setTimeout(() => modal.classList.add('show'), 10);
+};
+
+// 获取数据手册输入组件HTML
+function getDatasheetInputHTML(value = '') {
+  const hasValue = value && value.trim() !== '';
+  const initialMode = hasValue ? 'url' : 'url'; // 默认URL模式
+  return `
+    <div class="form-group">
+      <label class="form-label">数据手册</label>
+      <div class="datasheet-input-wrapper">
+        <div class="datasheet-mode-switch">
+          <button type="button" class="datasheet-mode-btn ${initialMode === 'url' ? 'active' : ''}" data-mode="url" onclick="switchDatasheetMode('url')">URL输入</button>
+          <button type="button" class="datasheet-mode-btn ${initialMode === 'file' ? 'active' : ''}" data-mode="file" onclick="switchDatasheetMode('file')">本地文件上传</button>
+        </div>
+        <div class="datasheet-input-content">
+          <div class="datasheet-url-input" id="datasheetUrlInput" style="display: ${initialMode === 'url' ? 'block' : 'none'};">
+            <input type="text" class="form-input" name="datasheetUrl" id="datasheetUrl" placeholder="请输入数据手册URL" value="${value || ''}">
+          </div>
+          <div class="datasheet-file-input" id="datasheetFileInput" style="display: ${initialMode === 'file' ? 'block' : 'none'};">
+            <input type="file" class="form-input" name="datasheetFile" id="datasheetFile" accept=".pdf,.doc,.docx">
+            <div class="datasheet-file-hint" style="font-size: 11px; color: var(--muted); margin-top: 4px;">
+              支持 PDF、Word 格式，上传后将自动转换为URL
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// 切换数据手册输入模式（全局函数）
+window.switchDatasheetMode = function(mode) {
+  const urlInput = document.getElementById('datasheetUrlInput');
+  const fileInput = document.getElementById('datasheetFileInput');
+  const modeButtons = document.querySelectorAll('.datasheet-mode-btn');
+  
+  if (urlInput && fileInput && modeButtons) {
+    // 更新按钮状态
+    modeButtons.forEach(btn => {
+      if (btn.dataset.mode === mode) {
+        btn.classList.add('active');
+      } else {
+        btn.classList.remove('active');
+      }
+    });
+    
+    // 切换输入框显示
+    if (mode === 'url') {
+      urlInput.style.display = 'block';
+      fileInput.style.display = 'none';
+      // 清空文件输入
+      const fileInputEl = document.getElementById('datasheetFile');
+      if (fileInputEl) fileInputEl.value = '';
+    } else {
+      urlInput.style.display = 'none';
+      fileInput.style.display = 'block';
+    }
+  }
 };
 
 // 获取添加表单HTML
@@ -554,6 +776,7 @@ function getAddFormHTML(type) {
           <label class="form-label">封装</label>
           <input type="text" class="form-input" name="package" required>
         </div>
+        ${getDatasheetInputHTML()}
       </form>
     `;
   } else if (type === 'import') {
@@ -565,24 +788,59 @@ function getAddFormHTML(type) {
         </div>
         <div class="form-group">
           <label class="form-label">文件格式说明</label>
-          <div style="font-size: 12px; color: var(--muted); padding: 8px; background: rgba(255,255,255,.02); border-radius: 4px;">
+          <div style="font-size: 12px; color: var(--muted); padding: 8px; background: rgba(255,255,255,.02); border-radius: 4px; margin-bottom: 8px;">
             支持 CSV、Excel 格式，第一行为表头，包含：物料编码、制造商、类别、电压、电流、封装
           </div>
+          <button type="button" class="btn" onclick="downloadImportTemplate()" style="width: 100%;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: inline-block; vertical-align: middle; margin-right: 6px;">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            下载导入模板
+          </button>
         </div>
       </form>
     `;
   } else if (type === 'datasheet') {
+    // 初始化已上传文件列表（如果为空，则使用预置文件）
+    if (uploadedDatasheetFiles.length === 0) {
+      uploadedDatasheetFiles = [...presetDatasheetFiles];
+    }
+    
     return `
       <form id="addForm">
         <div class="form-group">
-          <label class="form-label">上传Datasheet文件</label>
-          <input type="file" class="form-input" name="file" accept=".pdf,.doc,.docx" required>
+          <label class="form-label">上传文件</label>
+          <input type="file" class="form-input" id="datasheetFileUpload" accept=".pdf,.doc,.docx" multiple>
+          <div class="form-hint" style="margin-top: 4px;">
+            支持 PDF、Word 格式，可同时选择多个文件
+          </div>
         </div>
         <div class="form-group">
-          <label class="form-label">或粘贴Datasheet内容</label>
-          <textarea class="form-textarea" name="content" placeholder="粘贴Datasheet文本内容..."></textarea>
+          <label class="form-label">已上传文件</label>
+          <div class="uploaded-files-list" id="uploadedFilesList">
+            ${uploadedDatasheetFiles.length > 0 ? uploadedDatasheetFiles.map((file, index) => `
+              <div class="uploaded-file-item" data-index="${index}">
+                <div class="uploaded-file-info">
+                  <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" style="flex-shrink: 0; margin-right: 8px; opacity: 0.6;">
+                    <path d="M2 1.5h5.5L10 4.5v6H2v-9z" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M7.5 1.5v3h3" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  <span class="uploaded-file-name">${file.name}</span>
+                  <span class="uploaded-file-size">${(file.size / 1024).toFixed(2)} KB</span>
+                </div>
+                <button type="button" class="uploaded-file-remove" onclick="removeUploadedFile(${index})" title="删除">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+            `).join('') : '<div class="uploaded-files-empty">暂无文件</div>'}
+          </div>
         </div>
-        <div style="font-size: 12px; color: var(--muted);">
+        <div style="font-size: 12px; color: var(--muted); margin-top: 8px;">
           系统将自动解析Datasheet并提取关键参数信息
         </div>
       </form>
@@ -591,32 +849,136 @@ function getAddFormHTML(type) {
   return '';
 }
 
+// 模拟文件上传（生成URL）
+async function uploadDatasheetFile(file) {
+  return new Promise((resolve) => {
+    // 模拟上传延迟
+    setTimeout(() => {
+      // 生成模拟URL
+      const fileName = file.name.replace(/\s+/g, '-');
+      const timestamp = Date.now();
+      const url = `https://datasheets.example.com/uploads/${timestamp}-${fileName}`;
+      resolve(url);
+    }, 500);
+  });
+}
+
+// 获取数据手册URL（处理URL输入或文件上传）
+async function getDatasheetUrl() {
+  const fileInput = document.getElementById('datasheetFile');
+  const urlInput = document.getElementById('datasheetUrl');
+  const fileInputWrapper = document.getElementById('datasheetFileInput');
+  
+  // 检查当前模式
+  if (fileInputWrapper && fileInputWrapper.style.display !== 'none' && fileInput && fileInput.files && fileInput.files.length > 0) {
+    // 文件上传模式
+    try {
+      showMessage('正在上传文件...', 'info');
+      const url = await uploadDatasheetFile(fileInput.files[0]);
+      showMessage('文件上传成功', 'success');
+      return url;
+    } catch (error) {
+      showMessage('文件上传失败', 'error');
+      throw error;
+    }
+  } else if (urlInput) {
+    // URL输入模式
+    return urlInput.value.trim();
+  }
+  return '';
+}
+
 // 处理添加提交
-function handleAddSubmit(type) {
+async function handleAddSubmit(type) {
   if (type === 'manual') {
     const form = document.getElementById('addForm');
     const formData = new FormData(form);
-    const newRow = {
-      id: Date.now(),
-      partNumber: formData.get('partNumber'),
-      manufacturer: formData.get('manufacturer'),
-      category: formData.get('category'),
-      voltage: formData.get('voltage'),
-      current: formData.get('current'),
-      package: formData.get('package'),
-      stock: 0,
-      price: 0,
-      datasheetUrl: '',
-      inputMethod: 'manual'
-    };
+    const now = new Date();
+    const updateTime = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:00`;
     
-    const allData = mockTableData[currentTable.name] || [];
-    allData.unshift(newRow);
-    mockTableData[currentTable.name] = allData;
+    try {
+      const datasheetUrl = await getDatasheetUrl();
+      
+      const newRow = {
+        id: Date.now(),
+        partNumber: formData.get('partNumber'),
+        manufacturer: formData.get('manufacturer'),
+        category: formData.get('category'),
+        voltage: formData.get('voltage'),
+        current: formData.get('current'),
+        package: formData.get('package'),
+        stock: 0,
+        price: 0,
+        datasheetUrl: datasheetUrl,
+        inputMethod: 'manual',
+        updateTime: updateTime
+      };
+      
+      const allData = mockTableData[currentTable.name] || [];
+      allData.unshift(newRow);
+      mockTableData[currentTable.name] = allData;
+      
+      closeModal();
+      renderTableData();
+      showMessage('添加成功', 'success');
+    } catch (error) {
+      // 上传失败，不关闭弹窗
+      console.error('添加失败:', error);
+    }
+  } else if (type === 'datasheet') {
+    // 检查是否有已上传的文件
+    if (uploadedDatasheetFiles.length === 0) {
+      showMessage('请至少上传一个文件', 'error');
+      return;
+    }
     
+    // Datasheet解析处理 - 根据已上传文件创建任务，模拟不同状态
+    const tasks = uploadedDatasheetFiles.map((file, index) => {
+      let status = 'waiting';
+      let errorReason = null;
+      
+      // 模拟不同状态：1个等待中，1个解析中（一直保持），3个成功，5个失败
+      if (index === 0) {
+        status = 'waiting';
+      } else if (index === 1) {
+        status = 'parsing'; // 这个会一直保持解析中
+      } else if (index >= 2 && index <= 4) {
+        status = 'success';
+      } else {
+        status = 'failed';
+        // 随机分配失败原因
+        const reasons = ['wrong_category', 'params_failed', 'network_error'];
+        errorReason = reasons[Math.floor(Math.random() * reasons.length)];
+      }
+      
+      return {
+        id: taskIdCounter++,
+        fileName: file.name,
+        fileSize: file.size,
+        status: status,
+        errorReason: errorReason,
+        createdAt: new Date().toISOString(),
+        isPermanentParsing: index === 1 // 标记这个任务一直保持解析中
+      };
+    });
+    
+    // 将任务添加到任务列表（新任务添加到前面）
+    tasks.reverse().forEach(task => {
+      datasheetTasks.unshift(task);
+    });
+    
+    // 清空已上传文件列表（为下次打开弹窗做准备）
+    uploadedDatasheetFiles = [];
+    
+    // 关闭弹窗
     closeModal();
-    renderTableData();
-    showMessage('添加成功', 'success');
+    
+    // 更新消息按钮和任务列表
+    updateTaskNotificationButton();
+    renderTaskNotificationList();
+    
+    // 开始处理任务（模拟），除了已经成功和失败的任务
+    startProcessingTasks();
   } else {
     closeModal();
     showMessage(`${type === 'import' ? '导入' : 'Datasheet解读'}功能演示中`, 'info');
@@ -628,9 +990,9 @@ function openEditModal(row) {
   const modal = createModal('编辑数据', getEditFormHTML(row), () => {
     const form = document.getElementById('editForm');
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        handleEditSubmit(row.id);
+        await handleEditSubmit(row.id);
       });
     }
   });
@@ -667,31 +1029,44 @@ function getEditFormHTML(row) {
         <label class="form-label">封装</label>
         <input type="text" class="form-input" name="package" value="${row.package}" required>
       </div>
+      ${getDatasheetInputHTML(row.datasheetUrl || '')}
     </form>
   `;
 }
 
 // 处理编辑提交
-function handleEditSubmit(id) {
+async function handleEditSubmit(id) {
   const form = document.getElementById('editForm');
   const formData = new FormData(form);
   
   const allData = mockTableData[currentTable.name] || [];
   const index = allData.findIndex(r => r.id === id);
   if (index > -1) {
-    allData[index] = {
-      ...allData[index],
-      partNumber: formData.get('partNumber'),
-      manufacturer: formData.get('manufacturer'),
-      category: formData.get('category'),
-      voltage: formData.get('voltage'),
-      current: formData.get('current'),
-      package: formData.get('package')
-    };
+    const now = new Date();
+    const updateTime = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:00`;
     
-    closeModal();
-    renderTableData();
-    showMessage('编辑成功', 'success');
+    try {
+      const datasheetUrl = await getDatasheetUrl();
+      
+      allData[index] = {
+        ...allData[index],
+        partNumber: formData.get('partNumber'),
+        manufacturer: formData.get('manufacturer'),
+        category: formData.get('category'),
+        voltage: formData.get('voltage'),
+        current: formData.get('current'),
+        package: formData.get('package'),
+        datasheetUrl: datasheetUrl,
+        updateTime: updateTime
+      };
+      
+      closeModal();
+      renderTableData();
+      showMessage('编辑成功', 'success');
+    } catch (error) {
+      // 上传失败，不关闭弹窗
+      console.error('编辑失败:', error);
+    }
   }
 }
 
@@ -1135,5 +1510,242 @@ window.downloadPDF = function(row) {
   // link.href = pdfUrl;
   // link.download = `${row.partNumber}_datasheet.pdf`;
   // link.click();
+};
+
+// 下载导入模板（全局函数，供HTML调用）
+window.downloadImportTemplate = function() {
+  // CSV模板内容（包含表头和示例数据）
+  const csvContent = `物料编码,制造商,类别,电压,电流,封装
+TI-74HC00D,Texas Instruments,MOSFET,5V,8mA,SOIC-14
+ST-MOSFET-2N7000,STMicroelectronics,MOSFET,60V,200mA,TO-92
+NXP-BSS138,NXP Semiconductors,MOSFET,50V,200mA,SOT-23`;
+  
+  // 创建Blob对象（添加BOM以支持Excel正确打开中文）
+  const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+  
+  // 创建下载链接
+  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  link.href = url;
+  link.download = '批量导入模板.csv';
+  link.style.display = 'none';
+  
+  // 触发下载
+  document.body.appendChild(link);
+  link.click();
+  
+  // 清理
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
+  
+  showMessage('模板下载成功', 'success');
+};
+
+// 初始化Datasheet文件上传功能
+function initDatasheetFileUpload() {
+  const fileInput = document.getElementById('datasheetFileUpload');
+  if (fileInput) {
+    fileInput.addEventListener('change', (e) => {
+      const files = Array.from(e.target.files);
+      if (files.length > 0) {
+        files.forEach(file => {
+          uploadedDatasheetFiles.push({
+            name: file.name,
+            size: file.size
+          });
+        });
+        // 更新文件列表显示
+        updateUploadedFilesList();
+        // 重新绑定事件
+        initDatasheetFileUpload();
+      }
+      // 清空文件输入框，允许重复选择相同文件
+      e.target.value = '';
+    });
+  }
+}
+
+// 更新已上传文件列表显示
+function updateUploadedFilesList() {
+  const listContainer = document.getElementById('uploadedFilesList');
+  if (!listContainer) return;
+  
+  if (uploadedDatasheetFiles.length === 0) {
+    listContainer.innerHTML = '<div class="uploaded-files-empty">暂无文件</div>';
+    return;
+  }
+  
+  listContainer.innerHTML = uploadedDatasheetFiles.map((file, index) => `
+    <div class="uploaded-file-item" data-index="${index}">
+      <div class="uploaded-file-info">
+        <svg width="14" height="14" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.2" style="flex-shrink: 0; margin-right: 8px; opacity: 0.6;">
+          <path d="M2 1.5h5.5L10 4.5v6H2v-9z" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7.5 1.5v3h3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="uploaded-file-name">${file.name}</span>
+        <span class="uploaded-file-size">${(file.size / 1024).toFixed(2)} KB</span>
+      </div>
+      <button type="button" class="uploaded-file-remove" onclick="removeUploadedFile(${index})" title="删除">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  `).join('');
+}
+
+// 删除已上传的文件（全局函数）
+window.removeUploadedFile = function(index) {
+  if (index >= 0 && index < uploadedDatasheetFiles.length) {
+    uploadedDatasheetFiles.splice(index, 1);
+    updateUploadedFilesList();
+    // 重新绑定文件上传事件
+    initDatasheetFileUpload();
+  }
+};
+
+// ========== Datasheet解析任务管理 ==========
+
+// 更新任务通知按钮
+function updateTaskNotificationButton() {
+  const badge = document.getElementById('taskNotificationBadge');
+  if (!badge) return;
+  
+  // 计算正在处理的任务数量（等待中 + 解析中）
+  const processingCount = datasheetTasks.filter(task => 
+    task.status === 'waiting' || task.status === 'parsing'
+  ).length;
+  
+  if (processingCount > 0) {
+    badge.textContent = processingCount;
+    badge.style.display = 'inline-block';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+// 渲染任务通知列表
+function renderTaskNotificationList() {
+  const listContainer = document.getElementById('taskNotificationList');
+  if (!listContainer) return;
+  
+  if (datasheetTasks.length === 0) {
+    listContainer.innerHTML = '<div class="task-notification-empty">暂无任务</div>';
+    return;
+  }
+  
+  listContainer.innerHTML = datasheetTasks.map(task => {
+    const statusText = {
+      waiting: '等待中',
+      parsing: '解析中',
+      success: '入库成功',
+      failed: '解析失败'
+    };
+    
+    const statusClass = {
+      waiting: 'status-waiting',
+      parsing: 'status-parsing',
+      success: 'status-success',
+      failed: 'status-failed'
+    };
+    
+    const errorReasonText = {
+      wrong_category: '非当前分类数据',
+      params_failed: '必要参数提取失败',
+      network_error: '网络异常'
+    };
+    
+    const errorHint = task.status === 'failed' && task.errorReason 
+      ? `title="${errorReasonText[task.errorReason] || '解析失败'}"`
+      : '';
+    
+    // 处理中的任务（等待中、解析中）可以关闭
+    const canClose = task.status === 'waiting' || task.status === 'parsing';
+    const closeBtn = canClose ? 
+      `<button class="task-item-close" onclick="cancelTask(${task.id})" title="放弃此任务">×</button>` : 
+      '';
+    
+    return `
+      <div class="task-notification-item ${statusClass[task.status]}" ${errorHint}>
+        <div class="task-item-header">
+          <span class="task-item-name">${task.fileName}</span>
+          <div class="task-item-right">
+            <span class="task-item-status ${statusClass[task.status]}">${statusText[task.status]}</span>
+            ${closeBtn}
+          </div>
+        </div>
+        ${task.status === 'failed' && task.errorReason ? 
+          `<div class="task-item-error">${errorReasonText[task.errorReason] || '解析失败'}</div>` : 
+          ''
+        }
+      </div>
+    `;
+  }).join('');
+}
+
+// 切换任务通知菜单（全局函数）
+window.toggleTaskNotificationMenu = function(event) {
+  event.stopPropagation();
+  const menu = document.getElementById('taskNotificationMenu');
+  if (menu) {
+    menu.classList.toggle('show');
+  }
+};
+
+// 开始处理任务（模拟）
+function startProcessingTasks() {
+  // 获取所有等待中的任务（不包括已经成功、失败和一直解析中的任务）
+  const waitingTasks = datasheetTasks.filter(task => 
+    task.status === 'waiting' && !task.isPermanentParsing
+  );
+  
+  if (waitingTasks.length === 0) return;
+  
+  // 模拟处理任务
+  waitingTasks.forEach((task, index) => {
+    setTimeout(() => {
+      // 检查任务是否还存在（可能已被取消）
+      if (!datasheetTasks.find(t => t.id === task.id)) return;
+      
+      // 更新状态为解析中
+      task.status = 'parsing';
+      updateTaskNotificationButton();
+      renderTaskNotificationList();
+      
+      // 模拟解析过程（2-5秒）
+      const parseDuration = 2000 + Math.random() * 3000;
+      setTimeout(() => {
+        // 检查任务是否还存在（可能已被取消）
+        if (!datasheetTasks.find(t => t.id === task.id)) return;
+        
+        // 随机决定成功或失败（70%成功率）
+        const success = Math.random() > 0.3;
+        
+        if (success) {
+          task.status = 'success';
+        } else {
+          task.status = 'failed';
+          // 随机选择一个失败原因
+          const reasons = ['wrong_category', 'params_failed', 'network_error'];
+          task.errorReason = reasons[Math.floor(Math.random() * reasons.length)];
+        }
+        
+        updateTaskNotificationButton();
+        renderTaskNotificationList();
+      }, parseDuration);
+    }, index * 500); // 每个任务延迟500ms开始
+  });
+}
+
+// 取消任务（全局函数）
+window.cancelTask = function(taskId) {
+  // 从任务列表中移除该任务
+  const index = datasheetTasks.findIndex(t => t.id === taskId);
+  if (index > -1) {
+    datasheetTasks.splice(index, 1);
+    updateTaskNotificationButton();
+    renderTaskNotificationList();
+  }
 };
 

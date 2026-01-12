@@ -79,23 +79,9 @@
 
             <div class="card kpi-card">
               <div class="kpi-head">
-                <span>查询总次数</span>
+                <span>写操作拦截</span>
               </div>
-              <div class="kpi-value mono">92,610</div>
-            </div>
-
-            <div class="card kpi-card">
-              <div class="kpi-head">
-                <span>成功（非空）</span>
-              </div>
-              <div class="kpi-value mono">61,324</div>
-            </div>
-
-            <div class="card kpi-card">
-              <div class="kpi-head">
-                <span>空值 / 失败</span>
-              </div>
-              <div class="kpi-value mono">21,106 / 10,180</div>
+              <div class="kpi-value mono">1,284</div>
             </div>
           </section>
 
@@ -256,22 +242,35 @@
                       </tr>
                     </tbody>
                   </table>
+                </div>
+              </div>
+            </div>
+          </section>
 
-                  <div style="margin-top:12px;display:grid;gap:10px;">
-                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
-                      <div style="padding:12px;">
-                        <div style="color:var(--muted);font-size:12px;margin-bottom:8px;">查询结果分布</div>
-                        <div id="queryResultChart" style="width: 100%; height: 180px;"></div>
-                      </div>
-                    </div>
+          <!-- 查询执行转化、查询结果分布、写操作拦截 -->
+          <section class="dashboard-row">
+            <div class="card span-6">
+              <div class="panel-header">
+                <div>
+                  <p class="panel-title">查询执行转化</p>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="panel-box" style="overflow: visible;">
+                  <div id="queryFunnelChart" style="width: 100%; height: 320px; overflow: visible;"></div>
+                </div>
+              </div>
+            </div>
 
-                    <div class="card" style="border-color:var(--stroke2);background:var(--panel2);">
-                      <div style="padding:12px;">
-                        <div style="color:var(--muted);font-size:12px;">写操作拦截</div>
-                        <div style="font-size:18px;font-weight:900;margin-top:8px;" class="mono">1,284</div>
-                      </div>
-                    </div>
-                  </div>
+            <div class="card span-6">
+              <div class="panel-header">
+                <div>
+                  <p class="panel-title">查询结果分布</p>
+                </div>
+              </div>
+              <div class="panel-body">
+                <div class="panel-box">
+                  <div id="queryResultChart" style="width: 100%; height: 280px;"></div>
                 </div>
               </div>
             </div>

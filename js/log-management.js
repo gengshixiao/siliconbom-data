@@ -2,28 +2,29 @@
 
 // 表名和业务含义映射
 const tableAliasMap = {
-  'parts_catalog': 'MOSFET',
-  'bom_items': '三极管',
-  'inventory_quotes': '电阻',
-  'param_index': '电容',
-  'datasheet_meta': '电感',
-  'component_specs': '二极管',
-  'package_info': 'IC芯片',
-  'supplier_data': '连接器'
+  'all_parts': '总表',
+  'mosfet_parts': 'MOSFET',
+  'transistor_parts': '三极管',
+  'resistor_parts': '电阻',
+  'capacitor_parts': '电容',
+  'inductor_parts': '电感',
+  'diode_parts': '二极管',
+  'ic_chip_parts': 'IC芯片',
+  'connector_parts': '连接器'
 };
 
 // 模拟日志数据（第一页10条）
 const mockLogs = [
-  { id: 1, tableName: 'parts_catalog', time: '2025-01-15 18:30:25', sql: 'SELECT * FROM parts_catalog WHERE partNumber LIKE "%TI%" LIMIT 100', result: '成功返回 45 条数据', source: '查询测试' },
-  { id: 2, tableName: 'bom_items', time: '2025-01-15 18:28:12', sql: 'SELECT manufacturer, COUNT(*) as count FROM bom_items GROUP BY manufacturer', result: '成功返回 128 条数据', source: '硅宝调用' },
-  { id: 3, tableName: 'inventory_quotes', time: '2025-01-15 18:25:08', sql: 'SELECT * FROM inventory_quotes WHERE stock < 100 ORDER BY stock ASC', result: '成功返回 23 条数据', source: '硅宝调用' },
-  { id: 4, tableName: 'param_index', time: '2025-01-15 18:22:45', sql: 'SELECT * FROM param_index WHERE voltage > 50', result: '空结果', source: '查询测试' },
-  { id: 5, tableName: 'datasheet_meta', time: '2025-01-15 18:20:33', sql: 'SELECT * FROM datasheet_meta WHERE category = "MOSFET"', result: '成功返回 156 条数据', source: '硅宝调用' },
-  { id: 6, tableName: 'parts_catalog', time: '2025-01-15 18:18:20', sql: 'UPDATE parts_catalog SET stock = 1000 WHERE id = 1', result: '失败：只读策略拦截', source: '查询测试' },
-  { id: 7, tableName: 'component_specs', time: '2025-01-15 18:15:55', sql: 'SELECT * FROM component_specs WHERE manufacturer = "Texas Instruments" LIMIT 50', result: '成功返回 50 条数据', source: '硅宝调用' },
-  { id: 8, tableName: 'package_info', time: '2025-01-15 18:12:40', sql: 'SELECT DISTINCT package FROM package_info', result: '成功返回 28 条数据', source: '查询测试' },
-  { id: 9, tableName: 'supplier_data', time: '2025-01-15 18:10:15', sql: 'SELECT * FROM supplier_data WHERE price < 1.0', result: '空结果', source: '硅宝调用' },
-  { id: 10, tableName: 'parts_catalog', time: '2025-01-15 18:08:02', sql: 'SELECT * FROM parts_catalog WHERE voltage BETWEEN 5 AND 12', result: '成功返回 89 条数据', source: '硅宝调用' },
+  { id: 1, tableName: 'mosfet_parts', time: '2025-01-15 18:30:25', sql: 'SELECT * FROM mosfet_parts WHERE partNumber LIKE "%TI%" LIMIT 100', result: '成功返回 45 条数据', source: '查询测试' },
+  { id: 2, tableName: 'transistor_parts', time: '2025-01-15 18:28:12', sql: 'SELECT manufacturer, COUNT(*) as count FROM transistor_parts GROUP BY manufacturer', result: '成功返回 128 条数据', source: '硅宝调用' },
+  { id: 3, tableName: 'resistor_parts', time: '2025-01-15 18:25:08', sql: 'SELECT * FROM resistor_parts WHERE stock < 100 ORDER BY stock ASC', result: '成功返回 23 条数据', source: '硅宝调用' },
+  { id: 4, tableName: 'capacitor_parts', time: '2025-01-15 18:22:45', sql: 'SELECT * FROM capacitor_parts WHERE voltage > 50', result: '空结果', source: '查询测试' },
+  { id: 5, tableName: 'inductor_parts', time: '2025-01-15 18:20:33', sql: 'SELECT * FROM inductor_parts WHERE category = "MOSFET"', result: '成功返回 156 条数据', source: '硅宝调用' },
+  { id: 6, tableName: 'mosfet_parts', time: '2025-01-15 18:18:20', sql: 'UPDATE mosfet_parts SET stock = 1000 WHERE id = 1', result: '失败：只读策略拦截', source: '查询测试' },
+  { id: 7, tableName: 'diode_parts', time: '2025-01-15 18:15:55', sql: 'SELECT * FROM diode_parts WHERE manufacturer = "Texas Instruments" LIMIT 50', result: '成功返回 50 条数据', source: '硅宝调用' },
+  { id: 8, tableName: 'ic_chip_parts', time: '2025-01-15 18:12:40', sql: 'SELECT DISTINCT package FROM ic_chip_parts', result: '成功返回 28 条数据', source: '查询测试' },
+  { id: 9, tableName: 'connector_parts', time: '2025-01-15 18:10:15', sql: 'SELECT * FROM connector_parts WHERE price < 1.0', result: '空结果', source: '硅宝调用' },
+  { id: 10, tableName: 'mosfet_parts', time: '2025-01-15 18:08:02', sql: 'SELECT * FROM mosfet_parts WHERE voltage BETWEEN 5 AND 12', result: '成功返回 89 条数据', source: '硅宝调用' },
 ];
 
 let currentPage = 1;

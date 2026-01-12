@@ -7,8 +7,194 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 初始化图表
 function initCharts() {
+  initQueryFunnelChart();
   initQueryTrendChart();
   initQueryResultChart();
+}
+
+// 初始化查询执行漏斗图
+function initQueryFunnelChart() {
+  const chartDom = document.getElementById('queryFunnelChart');
+  if (!chartDom) return;
+  
+  // 确保 ECharts 已加载
+  if (typeof echarts === 'undefined') {
+    console.error('ECharts 未加载');
+    return;
+  }
+  
+  const myChart = echarts.init(chartDom);
+  
+  // 获取CSS变量的实际值
+  const getCSSVariable = (varName) => {
+    return getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+  };
+  
+  // 根据主题获取颜色
+  const getColors = () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    return {
+      text: getCSSVariable('--text') || (isLight ? '#1d1d1f' : '#e9e9ea'),
+      muted: getCSSVariable('--muted') || (isLight ? '#6e6e73' : '#a8aaad'),
+      stroke: getCSSVariable('--stroke') || (isLight ? '#e5e5e7' : '#3a3b3e'),
+      stroke2: getCSSVariable('--stroke2') || (isLight ? '#d1d1d3' : '#343538'),
+      panel2: getCSSVariable('--panel2') || (isLight ? '#fafafa' : '#252628'),
+      a1: getCSSVariable('--a1') || (isLight ? '#5a8a96' : '#7aa7b3'),
+      a2: getCSSVariable('--a2') || (isLight ? '#6b9ba8' : '#8bb8c4'),
+      a3: getCSSVariable('--a3') || (isLight ? '#7cacba' : '#9cc9d5'),
+      isLight: isLight
+    };
+  };
+  
+  const createOption = () => {
+    const colors = getColors();
+    const isLight = colors.isLight;
+    
+    // 漏斗数据 - 每层使用不同颜色
+    const funnelData = [
+      { value: 92610, name: 'SQL执行总次数', color: isLight ? '#8e8e93' : '#6e6e73' },
+      { value: 82430, name: '合法SQL次数', color: isLight ? '#5a8a96' : '#7aa7b3' },
+      { value: 61324, name: '成功返回结果次数', color: '#ff9500' }
+    ];
+    
+    // 计算转化率
+    const totalConversion = ((funnelData[2].value / funnelData[0].value) * 100).toFixed(2);
+    const step1Conversion = ((funnelData[1].value / funnelData[0].value) * 100).toFixed(2);
+    const step2Conversion = ((funnelData[2].value / funnelData[1].value) * 100).toFixed(2);
+    
+    return {
+      backgroundColor: 'transparent',
+      tooltip: {
+        trigger: 'item',
+        formatter: function(params) {
+          const percent = ((params.value / funnelData[0].value) * 100).toFixed(1);
+          const prevValue = params.dataIndex > 0 ? funnelData[params.dataIndex - 1].value : funnelData[0].value;
+          const conversion = params.dataIndex > 0 ? ((params.value / prevValue) * 100).toFixed(2) : '100.00';
+          return `${params.name}<br/>数量: ${params.value.toLocaleString()}<br/>占比: ${percent}%<br/>转化率: ${conversion}%`;
+        },
+        backgroundColor: isLight ? '#ffffff' : '#2a2b2d',
+        borderColor: colors.stroke,
+        textStyle: {
+          color: colors.text,
+          fontSize: 12
+        }
+      },
+      graphic: [
+        {
+          type: 'text',
+          left: 'center',
+          top: '5%',
+          style: {
+            text: `总转化率: ${totalConversion}%`,
+            fontSize: 14,
+            fontWeight: 'bold',
+            fill: colors.text
+          }
+        }
+      ],
+      legend: {
+        orient: 'vertical',
+        right: '8%',
+        top: 'middle',
+        itemGap: 16,
+        itemWidth: 16,
+        itemHeight: 12,
+        textStyle: {
+          color: colors.text,
+          fontSize: 12
+        },
+        data: funnelData.map(item => item.name)
+      },
+      series: [
+        {
+          name: '查询执行转化',
+          type: 'funnel',
+          left: '8%',
+          top: '15%',
+          bottom: '10%',
+          width: '60%',
+          min: 0,
+          max: funnelData[0].value,
+          minSize: '30%',
+          maxSize: '100%',
+          sort: 'none',
+          gap: 10,
+          label: {
+            show: true,
+            position: 'inside',
+            formatter: function(params) {
+              const prevValue = params.dataIndex > 0 ? funnelData[params.dataIndex - 1].value : funnelData[0].value;
+              const conversion = params.dataIndex > 0 ? ((params.value / prevValue) * 100).toFixed(2) : '100.00';
+              return `{value|${params.value.toLocaleString()}}\n{conversion|转化率: ${conversion}%}`;
+            },
+            fontSize: 12,
+            color: '#ffffff',
+            fontWeight: 'bold',
+            rich: {
+              value: {
+                fontSize: 16,
+                fontWeight: 900,
+                color: '#ffffff',
+                lineHeight: 22
+              },
+              conversion: {
+                fontSize: 11,
+                color: '#ffffff',
+                opacity: 0.9,
+                lineHeight: 16
+              }
+            }
+          },
+          labelLine: {
+            show: false
+          },
+          itemStyle: {
+            borderColor: isLight ? '#ffffff' : '#2a2b2d',
+            borderWidth: 2,
+            borderRadius: 4
+          },
+          emphasis: {
+            label: {
+              fontSize: 13
+            },
+            itemStyle: {
+              shadowBlur: 15,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.3)'
+            }
+          },
+          data: funnelData.map((item, index) => {
+            return {
+              value: item.value,
+              name: item.name,
+              itemStyle: {
+                color: item.color
+              }
+            };
+          })
+        }
+      ]
+    };
+  };
+  
+  // 设置初始配置
+  myChart.setOption(createOption());
+  
+  // 监听主题变化
+  const observer = new MutationObserver(() => {
+    setTimeout(() => {
+      myChart.setOption(createOption(), true);
+    }, 50);
+  });
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+  
+  // 响应式调整
+  window.addEventListener('resize', () => {
+    myChart.resize();
+  });
 }
 
 // 初始化查询次数趋势图
